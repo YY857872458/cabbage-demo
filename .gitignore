@@ -105,3 +105,6 @@ dist
 
 # ParcelJs dist folder
 dist/
+
+#json response
+responseJson/
