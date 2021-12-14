@@ -1,0 +1,15 @@
+{
+  "name": "cabbage-demo",
+  "version": "1.0.0",
+  "description": "a trello demo",
+  "main": "index.js",
+  "repository": "git@github.com:YY857872458/cabbage-demo.git",
+  "author": "Yang Yang2e <yang.yang2@thoughtworks.comm>",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build src/html/*.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
