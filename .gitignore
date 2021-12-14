@@ -103,8 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# ParcelJs cache folder
-.cache/
-
 # ParcelJs dist folder
 dist/
