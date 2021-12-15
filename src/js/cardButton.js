@@ -2,12 +2,12 @@ const Promise = window.TrelloPowerUp.Promise;
 
 onRecordBtnClick = function () {
     const t = window.TrelloPowerUp.iframe();
-    return Promise.all(t.get('card','shared','key',0)).then(function (savedData) {
+    t.get('card','shared','key',0).then(function (savedData) {
         t.set('card','shared',{
             key:savedData.key+1
         })
         console.log("savedData Key="+savedData.key)
-        // return null;
+        return savedData.key;
     })
     // const savedData = t.get('card', 'shared', 'key', 0);
     // if(!savedData){
