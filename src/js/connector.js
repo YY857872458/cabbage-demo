@@ -1,38 +1,69 @@
-console.log("Hello,World!");
+console.log('Hello World!');
 
-const promise = window.TrelloPowerUp.Promise;
+const onBtnClick = function(t, opts) {
+    console.log('Someone clicked the button');
+    return t.popup({
+        title: 'Demand Change',
+        url: './cardButton.html'
+    });
+};
 
-// window.TrelloPowerUp.initialize({
-//     "card-buttons": function (t, opts) {
-//         return t.card("idList").then(function (card) {
-//             console.log("打印t.idList ========================")
-//             console.log(JSON.stringify(card, null, 2));
-//             console.log("t.get ========="+t.get('card','shared'))
-//         });
-//     }
-
-const fetchData = function (t) {
-    return promise.all([t.get('card', 'shared')]).spread(function (pluginData) {
-        console.log('pluginData===='+pluginData);
-    })
+const cardButtons = function(t, opts) {
+    return [{
+        text: 'Demand Changes',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emoji_u1f601.svg/2048px-Emoji_u1f601.svg.png',
+        callback: onBtnClick,
+        condition: 'edit'
+    }, {
+        text: 'Open',
+        condition: 'always',
+        target: 'Trello Developer Site'
+    }];
 }
 
+window.TrelloPowerUp.initialize(
+    {
+        'card-badges': function(t, opts) {
+            t.get();
+            let cardAttachments = t.card('attachments');
+            // let cardAttachments = opts.attachments;
+            return t.card("name")
+                .get("name")
+                .then(function(cardName) {
+                    console.log('card name  ' + cardName);
+                    return [
+                        {
+                            dynamic: function() {
+                                return {
+                                    text: "Dynamic" + (Math.random() * 100).toFixed(0).toString(),
+                                    color: "green",
+                                    refresh: 10,
+                                };
+                            },
+                        },
+                        {
+                            text: "Static",
+                            color: null,
+                        }];
+                });
+        },
+        'card-buttons': cardButtons,
+        'card-detail-badges': function (t, opts) {
+            return t.card('name')
+                .get('name')
+                .then(function (cardName) {
+                    return [{
+                        dynamic: function () {
+                            return {
+                                title: 'Changes',
+                                text: changingTimes.toString(),
+                                color: 'red',
+                                refresh: 10
+                            };
+                        },
+                    }]
+                })
+        },
+    }
+);
 
-// "board-buttons": function (t, opts) {
-//     return t.cards("all").then(function (cards) {
-//         console.log("打印t.cards ========================")
-//         console.log(JSON.stringify(cards, null, 2));
-//     });
-// },
-// "board-buttons": function (t, opts) {
-//     return t.board("all").then(function (board) {
-//         console.log("打印t.board =========================")
-//         console.log(JSON.stringify(board, null, 2));
-//     });
-// },
-// 'card-buttons': function (t, opts) {
-//     var context = t.getContext();
-//     console.log("同步获取t的当前上下文t.getContext =========================")
-//     console.log(JSON.stringify(context, null, 2));
-//     return [];
-// }
