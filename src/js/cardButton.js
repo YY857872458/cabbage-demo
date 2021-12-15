@@ -7,7 +7,7 @@ onRecordBtnClick = function () {
             key:savedData.key+1
         })
         console.log("savedData Key="+savedData.key)
-        return null;
+        // return null;
     })
     // const savedData = t.get('card', 'shared', 'key', 0);
     // if(!savedData){
