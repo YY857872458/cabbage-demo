@@ -3,6 +3,7 @@ const Promise = window.TrelloPowerUp.Promise;
 
 
 onRecordBtnClick = function (t) {
+    console.log('t.get='+t.get('card', 'shared'));
     return Promise.all(t.get('card', 'shared')).then(function (savedData) {
         if ( savedData && savedData.times && savedData.times > 0) {
             t.set('card', 'shared', {
