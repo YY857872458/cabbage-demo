@@ -4,6 +4,9 @@ const Promise = window.TrelloPowerUp.Promise;
 
 onRecordBtnClick = function (t) {
     const savedData = t.get('card', 'shared', 'key', 0);
+    if(!savedData){
+        return null;
+    }
     t.set('card','shared',{
         key:savedData.key+1
     })
