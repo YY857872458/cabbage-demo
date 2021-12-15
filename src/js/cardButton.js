@@ -10,7 +10,10 @@ onRecordBtnClick = function () {
         console.log("savedData Key=" + savedData.key)
         return savedData.key;
     } else {
-        savedData.key = 0;
+        t.set('card', 'shared', {
+            key: 0
+        })
+        console.log("initial data"+savedData.key)
     }
     // t.get('card', 'shared', 'key', 0).then(function (savedData) {
     //     t.set('card', 'shared', {
