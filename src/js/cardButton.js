@@ -3,14 +3,14 @@ let savedData;
 onRecordBtnClick = function () {
     const t = window.TrelloPowerUp.iframe();
     savedData = t.get('card', 'shared', 'key');
-    if (savedData === undefined) {
-        savedData = 0
-    } else {
+    if (typeof savedData !== 'undefined') {
         t.set('card', 'shared', {
             key: savedData.key + 1
         })
         console.log("savedData Key=" + savedData.key)
         return savedData.key;
+    } else {
+        savedData = 0;
     }
     // t.get('card', 'shared', 'key', 0).then(function (savedData) {
     //     t.set('card', 'shared', {
