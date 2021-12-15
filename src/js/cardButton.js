@@ -1,14 +1,24 @@
 const Promise = window.TrelloPowerUp.Promise;
-
+let savedData;
 onRecordBtnClick = function () {
     const t = window.TrelloPowerUp.iframe();
-    t.get('card','shared','key',0).then(function (savedData) {
-        t.set('card','shared',{
-            key:savedData.key+1
+    savedData = t.get('card', 'shared', 'key');
+    if (savedData === undefined) {
+        savedData = 0
+    } else {
+        t.set('card', 'shared', {
+            key: savedData.key + 1
         })
-        console.log("savedData Key="+savedData.key)
+        console.log("savedData Key=" + savedData.key)
         return savedData.key;
-    })
+    }
+    // t.get('card', 'shared', 'key', 0).then(function (savedData) {
+    //     t.set('card', 'shared', {
+    //         key: savedData.key + 1
+    //     })
+    //     console.log("savedData Key=" + savedData.key)
+    //     return savedData.key;
+    // })
     // const savedData = t.get('card', 'shared', 'key', 0);
     // if(!savedData){
     //     return null;
