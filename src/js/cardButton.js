@@ -1,64 +1,54 @@
-const Promise = window.TrelloPowerUp.Promise;
-let savedData;
-onRecordBtnClick = function () {
-    const t = window.TrelloPowerUp.iframe();
-    savedData = t.get('card', 'shared', 'changeTime',0).then(function (t){
-        console.log("what is this->",JSON.stringify(t))
-    });
-    if (typeof savedData !== 'undefined') {
-        t.set('card', 'shared', {
-            changeTime: savedData + 1
-        })
-        console.log("savedData changeTime=" + savedData)
-        return savedData;
-    } else {
-        t.set('card', 'shared', {
-            changeTime: 0
-        })
-        console.log("initial data "+savedData.changeTime)
-    }
-    // t.get('card', 'shared', 'key', 0).then(function (savedData) {
-    //     t.set('card', 'shared', {
-    //         key: savedData.key + 1
-    //     })
-    //     console.log("savedData Key=" + savedData.key)
-    //     return savedData.key;
-    // })
-    // const savedData = t.get('card', 'shared', 'key', 0);
-    // if(!savedData){
-    //     return null;
-    // }
-    // console.log('savedData'+savedData.key);
-    // return savedData.key;
-    // // if (isExist) {
-    //     t.set('card', 'shared', {
-    //         times: isExist.times + 1
-    //     })
-    //     console.log('true' + isExist.times)
-    //     return isExist.times;
-    // } else {
-    //     t.set('card', 'shared', {
-    //         times: 1
-    //     })
-    //     console.log('false' + isExist.times)
-    // }
-    // return Promise.all(isExist).then(function (savedData) {
-    //     if (savedData && savedData.times && savedData.times > 0) {
-    //         t.set('card', 'shared', {
-    //             times: savedData.times + 1
-    //         })
-    //         console.log('true' + savedData.times)
-    //         return savedData.times;
-    //     } else {
-    //         t.set('card', 'shared', {
-    //             times: 1
-    //         })
-    //         console.log('false' + savedData.times)
-    //         return null;
-    //     }
-    // })
+// const Promise = window.TrelloPowerUp.Promise;
+// let savedData;
+// onRecordBtnClick = function () {
+//     const t = window.TrelloPowerUp.iframe();
+//     savedData = t.get('card', 'shared', 'changeTime',0).then(function (t){
+//         console.log("what is this->",JSON.stringify(t))
+//     });
+//     if (typeof savedData !== 'undefined') {
+//         t.set('card', 'shared', {
+//             changeTime: savedData + 1
+//         })
+//         console.log("savedData changeTime=" + savedData)
+//         return savedData;
+//     } else {
+//         t.set('card', 'shared', {
+//             changeTime: 0
+//         })
+//         console.log("initial data "+savedData.changeTime)
+//     }
+// }
+//
+
+const t = window.TrelloPowerUp.iframe();
+const context = t.getContext();
+console.log("context=",context);
+let demandChangeCount;
+t.get(context.card, 'shared', 'demandChangeCount').then(demandChangeCountInResponse => {
+    demandChangeCount = demandChangeCountInResponse ? demandChangeCountInResponse : 0;
+    showDemandChangeCount(`total changes: ${demandChangeCount}`);
+});
+t.cards("all").then(function (cards) {
+    console.log('t.cards(\'all\') res: ', JSON.stringify(cards, null, 2));
+});
+
+
+onRecordBtnClick = () => {
+    demandChangeCount = demandChangeCount + 1;
+    console.log("demandChangeCount is increased, now its value is: ", demandChangeCount);
+    showDemandChangeCount(`total changes: ${demandChangeCount}`);
 }
 
-onSaveBtnClick = function () {
-    console.log("onSaveBtnClick")
+onSaveBtnClick = () => {
+    t.set(context.card, 'shared', {demandChangeCount});
+    console.log("demandChangeCount is saved!");
+    showDemandChangeCount(`total changes: ${demandChangeCount} (save successfully!)`);
 }
+
+showDemandChangeCount = demandChangeCount => {
+    let element = document.getElementById("demandChangeCount");
+    element.innerHTML = demandChangeCount;
+}
+// onSaveBtnClick = function () {
+//     console.log("onSaveBtnClick")
+// }
