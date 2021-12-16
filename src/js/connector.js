@@ -64,15 +64,15 @@
 //
 window.TrelloPowerUp.initialize({
     "card-buttons": function (t, opts) {
-        t.card("all").then(function (card) {
-            console.log('t.card(\'all\')', JSON.stringify(card, null, 2));
-        });
-        t.card("name").then(function (card) {
-            console.log('t.card(\'name\')', JSON.stringify(card, null, 2));
-        });
-        t.cards('name').then(function (cards) {
-            console.log('t.cards(\'name\')', JSON.stringify(cards, null, 2));
-        });
+        // t.card("all").then(function (card) {
+        //     console.log('t.card(\'all\')', JSON.stringify(card, null, 2));
+        // });
+        // t.card("name").then(function (card) {
+        //     console.log('t.card(\'name\')', JSON.stringify(card, null, 2));
+        // });
+        // t.cards('name').then(function (cards) {
+        //     console.log('t.cards(\'name\')', JSON.stringify(cards, null, 2));
+        // });
         t.list("all").then(function (list) {
             console.log('t.list(\'all\')', JSON.stringify(list, null, 2));
         });
