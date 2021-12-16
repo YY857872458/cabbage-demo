@@ -3,7 +3,7 @@ let savedData;
 onRecordBtnClick = function () {
     const t = window.TrelloPowerUp.iframe();
     savedData = t.get('card', 'shared', 'changeTime',0).then(function (t){
-        console.log(JSON.stringify(t))
+        console.log("what is this->",JSON.stringify(t))
     });
     if (typeof savedData.changeTime !== 'undefined') {
         t.set('card', 'shared', {
