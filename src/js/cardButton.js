@@ -5,12 +5,12 @@ onRecordBtnClick = function () {
     savedData = t.get('card', 'shared', 'changeTime',0).then(function (t){
         console.log("what is this->",JSON.stringify(t))
     });
-    if (typeof savedData.changeTime !== 'undefined') {
+    if (typeof savedData !== 'undefined') {
         t.set('card', 'shared', {
-            changeTime: savedData.changeTime + 1
+            changeTime: savedData + 1
         })
-        console.log("savedData changeTime=" + savedData.changeTime)
-        return savedData.changeTime;
+        console.log("savedData changeTime=" + savedData)
+        return savedData;
     } else {
         t.set('card', 'shared', {
             changeTime: 0
