@@ -11,7 +11,7 @@ const onBtnClick = function(t, opts) {
 const cardButtons = function(t, opts) {
     return [{
         text: 'Demand Changes',
-        icon: 'https://as2.ftcdn.net/v2/jpg/01/63/44/43/1000_F_163444357_JEgZDs2wRl8e2rPoAWXSrcwfvZaGzys8.jpg',
+        icon: './images/icon.svg',
         callback: onBtnClick,
         condition: 'always'
     }];
@@ -22,7 +22,6 @@ window.TrelloPowerUp.initialize(
         'card-badges': function(t, opts) {
             return t.card("name")
                 .then(function(cardName) {
-                    console.log('card name  ' + cardName);
                     return [
                         {
                             dynamic: function() {
