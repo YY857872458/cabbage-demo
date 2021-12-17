@@ -11,7 +11,7 @@ const onBtnClick = function(t, opts) {
 const cardButtons = function(t, opts) {
     return [{
         text: 'Demand Changes',
-        icon: 'https://uxwing.com/wp-content/themes/uxwing/download/19-e-commerce-currency-shopping/change-exchange.png',
+        icon: 'https://as2.ftcdn.net/v2/jpg/01/63/44/43/1000_F_163444357_JEgZDs2wRl8e2rPoAWXSrcwfvZaGzys8.jpg',
         callback: onBtnClick,
         condition: 'always'
     }];
