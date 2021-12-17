@@ -15,11 +15,7 @@ const cardButtons = function(t, opts) {
         text: 'Demand Changes',
         icon: 'icon',
         callback: onBtnClick,
-        condition: 'edit'
-    }, {
-        text: 'Open',
-        condition: 'always',
-        target: 'Trello Developer Site'
+        condition: 'always'
     }];
 }
 
