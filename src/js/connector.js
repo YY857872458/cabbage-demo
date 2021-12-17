@@ -11,7 +11,7 @@ const onBtnClick = function(t, opts) {
 const cardButtons = function(t, opts) {
     return [{
         text: 'Demand Changes',
-        icon: './images/icon.svg',
+        icon: 'https://w7.pngwing.com/pngs/386/187/png-transparent-computer-icons-blog-change-angle-text-logo-thumbnail.png',
         callback: onBtnClick,
         condition: 'always'
     }];
