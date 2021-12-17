@@ -1,5 +1,3 @@
-import svgIcon from '../images/svg icon.svg';
-
 console.log('Hello World!');
 
 const onBtnClick = function(t, opts) {
@@ -13,7 +11,7 @@ const onBtnClick = function(t, opts) {
 const cardButtons = function(t, opts) {
     return [{
         text: 'Demand Changes',
-        icon: svgIcon,
+        icon: '../images/svg icon.svg',
         callback: onBtnClick,
         condition: 'always'
     }];
