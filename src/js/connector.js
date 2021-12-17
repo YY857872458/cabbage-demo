@@ -11,7 +11,7 @@ const onBtnClick = function(t, opts) {
 const cardButtons = function(t, opts) {
     return [{
         text: 'Demand Changes',
-        icon: '../images/svg icon.svg',
+        icon: 'svg icon.svg',
         callback: onBtnClick,
         condition: 'always'
     }];
