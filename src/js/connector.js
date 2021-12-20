@@ -87,8 +87,8 @@ const initializeData = function (t, listId) {
         console.log("参数listId: \n" + listId);
         allCards.forEach(card => console.log('inDevCards' + inDevCards.push(card)));
         allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
+        console.log('in dev cards: \n' + JSON.stringify(inDevCards));
     })
-    console.log('in dev cards: \n' + JSON.stringify(inDevCards));
 }
 
 
