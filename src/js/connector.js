@@ -15,7 +15,7 @@ const cardButtons = function (t, opts) {
     })
     t.set('board', 'shared', {
         id: context.card,
-        name:t.card('name').get('name'),
+        name: t.card('name').get('name'),
         desc: t.card('desc').get('desc')
     })
     t.get('board', 'shared').then(function (result) {
@@ -60,6 +60,7 @@ window.TrelloPowerUp.initialize(
 );
 const onBoardBtn = function (t, opts) {
     return t.popup({
+        text: 'Demand Change',
         title: 'Board Button Callback',
         url: './boardButton.html'
     });
