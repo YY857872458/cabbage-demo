@@ -82,11 +82,11 @@ const onBoardBtn = function (t, opts) {
 
 const initializeData = function (t, listId) {
     let inDevCards = [];
-    t.cards("id", "name", "desc", "members").then(function (allCards) {
+    t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
         console.log('t.cards:' + JSON.stringify(allCards));
         allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
     })
-    console.log('in dev cards: '+JSON.stringify(inDevCards));
+    console.log('in dev cards: ' + JSON.stringify(inDevCards));
 }
 
 
