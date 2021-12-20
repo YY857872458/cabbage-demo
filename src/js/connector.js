@@ -38,13 +38,7 @@ const cardButtons = function (t, opts) {
         condition: 'always'
     }];
 }
-var t = window.TrelloPowerUp.iframe();
-t.list('id','name').then(function (result) {
-    console.log('t.list: '+JSON.stringify(result))
-})
-t.lists('id','name').then(function (result) {
-    console.log('t.lists: '+JSON.stringify(result))
-})
+
 window.TrelloPowerUp.initialize(
     {
         // 'card-badges': function (t, opts) {
@@ -66,6 +60,7 @@ window.TrelloPowerUp.initialize(
                 })
         },
         "board-buttons": function (t, opts) {
+            console.log("board-button")
             return [{
                 text: 'Callback',
                 callback: onBoardBtn,
