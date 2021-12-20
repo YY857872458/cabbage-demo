@@ -82,9 +82,10 @@ const onBoardBtn = function (t, opts) {
 
 const initializeData = function (t, listId) {
     var inDevCards = [];
-    console.log("listId: "+listId);
     t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
         console.log('t.cards:' + JSON.stringify(allCards));
+        console.log("参数listId: \n" + listId);
+        allCards.forEach(card => console.log("循环idList "+card.idList));
         allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
     })
     console.log('in dev cards: \n' + JSON.stringify(inDevCards));
