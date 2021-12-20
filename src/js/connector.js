@@ -61,7 +61,9 @@ window.TrelloPowerUp.initialize(
         },
         "board-buttons": function (t, opts) {
             t.lists('id', 'name').then(function (listNames) {
-                listNames.name.forEach((name) => name === 'IN DEV' ? initializeData(t) : null)
+                console.log('listNames.name'+JSON.stringify(listNames.name));
+                console.log('listNames'+JSON.stringify(listNames));
+                // listNames.name.forEach((name) => name === 'IN DEV' ? initializeData(t) : null)
                 console.log('t.lists: ' + JSON.stringify(listNames))
             })
             return [{
