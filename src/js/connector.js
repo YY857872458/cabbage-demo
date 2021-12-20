@@ -52,7 +52,7 @@ window.TrelloPowerUp.initialize(
         "board-buttons": function (t, opts) {
             return [{
                 text: 'Callback',
-                callback: onBoardBtn(),
+                callback: onBoardBtn,
                 condition: 'edit'
             }]
         }
