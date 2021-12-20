@@ -61,7 +61,8 @@ window.TrelloPowerUp.initialize(
         },
         "board-buttons": function (t, opts) {
             t.lists('id', 'name').then(function (listNames) {
-                for (let name in listNames) {
+                for (let name in listNames.name) {
+                    console.log('name');
                     if (name === "IN DEV") {
                            t.cards("id","name","desc","members").then(function (cardInfo){
                                console.log('cards:'+JSON.stringify(cardInfo));
