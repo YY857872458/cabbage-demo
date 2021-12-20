@@ -9,6 +9,17 @@ const onBtnClick = function (t, opts) {
 };
 
 const cardButtons = function (t, opts) {
+    var context = t.getContext();
+    t.card('id', 'name', 'desc', 'members').then(function (result) {
+        console.log('t.card: ' + JSON.stringify(result, null, 2));
+    })
+    t.set('board', 'shared', {
+        id: context.card,
+        desc: t.card('desc').get('desc')
+    })
+    t.get('board', 'shared').then(function (result) {
+        console.log('t.get: ' + JSON.stringify(result, null, 2));
+    })
     return [{
         text: 'Demand Changes',
         icon: '🔺',
@@ -20,17 +31,6 @@ const cardButtons = function (t, opts) {
 window.TrelloPowerUp.initialize(
     {
         'card-badges': function (t, opts) {
-            var context = t.getContext();
-            t.card('id', 'name', 'desc', 'members').then(function (result) {
-                console.log('t.card: ' + JSON.stringify(result, null, 2));
-            })
-            t.set('board', 'shared', {
-                id: context.card,
-                desc: t.card('desc').get('desc')
-            })
-            t.get('board', 'shared').then(function (result) {
-                console.log('t.get: ' + JSON.stringify(result, null, 2));
-            })
             return null;
         },
         'card-buttons': cardButtons,
