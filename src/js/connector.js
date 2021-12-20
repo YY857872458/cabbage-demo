@@ -61,14 +61,7 @@ window.TrelloPowerUp.initialize(
         },
         "board-buttons": function (t, opts) {
             t.lists('id', 'name').then(function (listNames) {
-                for (let name in listNames.name) {
-                    console.log('name');
-                    if (name === "IN DEV") {
-                           t.cards("id","name","desc","members").then(function (cardInfo){
-                               console.log('cards:'+JSON.stringify(cardInfo));
-                           })
-                    }
-                }
+                listNames.name.forEach((name) => name === 'IN DEV' ? initializeData(t) : null)
                 console.log('t.lists: ' + JSON.stringify(listNames))
             })
             return [{
@@ -86,5 +79,12 @@ const onBoardBtn = function (t, opts) {
         url: './boardButton.html'
     });
 }
+
+const initializeData = function (t) {
+    t.cards("id", "name", "desc", "members").then(function (cardInfo) {
+        console.log('t.cards:' + JSON.stringify(cardInfo));
+    })
+}
+
 
 
