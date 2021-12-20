@@ -41,9 +41,9 @@ const cardButtons = function (t, opts) {
 
 window.TrelloPowerUp.initialize(
     {
-        // 'card-badges': function (t, opts) {
-        //     return null;
-        // },
+        'card-badges': function (t, opts) {
+            return null;
+        },
         'card-buttons': cardButtons,
         'card-detail-badges': function (t, opts) {
             return t.card('name')
@@ -60,7 +60,12 @@ window.TrelloPowerUp.initialize(
                 })
         },
         "board-buttons": function (t, opts) {
-            console.log("board-button")
+            t.list('id','name').then(function (result) {
+                console.log('t.list: '+JSON.stringify(result))
+            })
+            t.lists('id','name').then(function (result) {
+                console.log('t.lists: '+JSON.stringify(result))
+            })
             return [{
                 text: 'Callback',
                 callback: onBoardBtn,
