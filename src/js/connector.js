@@ -15,6 +15,7 @@ const cardButtons = function (t, opts) {
     })
     t.set('board', 'shared', {
         id: context.card,
+        name:t.card('name').get('name'),
         desc: t.card('desc').get('desc')
     })
     t.get('board', 'shared').then(function (result) {
@@ -48,7 +49,7 @@ window.TrelloPowerUp.initialize(
                     }]
                 })
         },
-        "board-button": function (t, opts) {
+        "board-buttons": function (t, opts) {
             return [{
                 text: 'Callback',
                 callback: onBoardBtn(),
