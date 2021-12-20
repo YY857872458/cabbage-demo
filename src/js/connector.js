@@ -20,6 +20,17 @@ const cardButtons = function(t, opts) {
 window.TrelloPowerUp.initialize(
     {
         'card-badges': function(t, opts) {
+            var context = t.getContext();
+            t.card('id','name','desc','members').then(function (result) {
+                console.log('t.card'+result);
+            })
+            t.set('board','shared',{
+                id:context.card,
+                desc:t.card('desc').get('desc')
+            })
+            t.get('board','shared').then(function (result) {
+                console.log('t.get'+result);
+            })
             return t.card("name")
                 .then(function(cardName) {
                     return [
