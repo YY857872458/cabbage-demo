@@ -65,7 +65,7 @@ window.TrelloPowerUp.initialize(
                     console.log(name);
                     if (name === "IN DEV") {
                            t.cards("id","name","desc","members").then(function (cardInfo){
-                               console.log(JSON.stringify(cardInfo));
+                               console.log('cards:'+JSON.stringify(cardInfo));
                            })
                     }
                 }
