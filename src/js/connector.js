@@ -60,11 +60,16 @@ window.TrelloPowerUp.initialize(
                 })
         },
         "board-buttons": function (t, opts) {
-            t.list('id','name').then(function (result) {
-                console.log('t.list: '+JSON.stringify(result))
-            })
-            t.lists('id','name').then(function (result) {
-                console.log('t.lists: '+JSON.stringify(result))
+            t.lists('id', 'name').then(function (listNames) {
+                for (let name in listNames) {
+                    console.log(name);
+                    if (name === "IN DEV") {
+                           t.cards("id","name","desc","members").then(function (cardInfo){
+                               console.log(JSON.stringify(cardInfo));
+                           })
+                    }
+                }
+                console.log('t.lists: ' + JSON.stringify(listNames))
             })
             return [{
                 text: 'Callback',
