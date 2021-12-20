@@ -84,13 +84,11 @@ const initializeData = function (t, listId) {
     var inDevCards = [];
     t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
         console.log('t.cards:' + JSON.stringify(allCards));
-        console.log("参数listId: \n" + listId);
-        allCards.forEach(card => console.log('inDevCards' + inDevCards.push(card)));
         allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
-        console.log('in dev cards: \n' + JSON.stringify(inDevCards));
+        console.log('in dev cards: \n' + JSON.stringify(inDevCards,null,2));
         return inDevCards;
     })
-    console.log('in dev cards: after return->\n' + JSON.stringify(inDevCards));
+    console.log('in dev cards: after return->\n' + JSON.stringify(inDevCards,null,2));
 }
 
 
