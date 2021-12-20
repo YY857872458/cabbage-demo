@@ -31,17 +31,7 @@ window.TrelloPowerUp.initialize(
             t.get('board', 'shared').then(function (result) {
                 console.log('t.get: ' + JSON.stringify(result, null, 2));
             })
-            return t.card("name")
-                .then(function (cardName) {
-                    return [{
-                        dynamic: function () {
-                            return {
-                                icon: '🔺',
-                                color: "yellow",
-                            };
-                        },
-                    }];
-                })
+            return null;
         },
         'card-buttons': cardButtons,
         'card-detail-badges': function (t, opts) {
