@@ -59,10 +59,9 @@ window.TrelloPowerUp.initialize(
                     }]
                 })
         },
-        "board-buttons": function ( t, opts) {
+        "board-buttons": function (t, opts) {
             t.lists('id', 'name').then(function (listsIdAndName) {
-                listsIdAndName.forEach(listName => listName.name === 'IN DEV' ? initializeData(t) : null)
-                console.log('listsIdAndName' + JSON.stringify(listsIdAndName));
+                listsIdAndName.forEach(listName => listName.name === 'IN DEV' ? initializeData(t, listName.id) : null)
                 console.log('t.lists: ' + JSON.stringify(listsIdAndName))
             })
             return [{
@@ -81,10 +80,13 @@ const onBoardBtn = function (t, opts) {
     });
 }
 
-const initializeData = function (t) {
-    t.cards("id", "name", "desc", "members").then(function (cardInfo) {
-        console.log('t.cards:' + JSON.stringify(cardInfo));
+const initializeData = function (t, listId) {
+    let inDevCards = [];
+    t.cards("id", "name", "desc", "members").then(function (allCards) {
+        console.log('t.cards:' + JSON.stringify(allCards));
+        allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
     })
+    console.log('in dev cards: '+JSON.stringify(inDevCards));
 }
 
 
