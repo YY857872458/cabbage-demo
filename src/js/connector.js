@@ -45,12 +45,11 @@ t.list('id','name').then(function (result) {
 t.lists('id','name').then(function (result) {
     console.log('t.lists: '+JSON.stringify(result))
 })
-
 window.TrelloPowerUp.initialize(
     {
-        'card-badges': function (t, opts) {
-            return null;
-        },
+        // 'card-badges': function (t, opts) {
+        //     return null;
+        // },
         'card-buttons': cardButtons,
         'card-detail-badges': function (t, opts) {
             return t.card('name')
