@@ -28,8 +28,8 @@ const cardButtons = function (t, opts) {
         console.log('indevlistid', inDevListId);
         console.log('idlist === const :',( context.list === inDevListId));
 
-        console.log('t.get() === undefined :', !t.get(context.card, 'shared', 'originalDesc'));
-        if (context.idList === inDevListId) {
+        console.log('t.get() === undefined :', t.get(context.card, 'shared', 'originalDesc'));
+        if (context.list === inDevListId) {
             console.log('go in if statement');
             t.set(context.card, 'shared', {
                 originalDesc: t.card('desc').get('desc'),
