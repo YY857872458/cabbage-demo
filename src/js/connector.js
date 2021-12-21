@@ -8,7 +8,7 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
-let inDevListId = null;
+var inDevListId = null;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
     const context = t.getContext();
