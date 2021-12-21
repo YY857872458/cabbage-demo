@@ -21,6 +21,9 @@ const cardButtons = function (t, opts) {
             }
         });
         t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ',JSON.stringify(res)))
+        console.log('context.idList',context.idList);
+        console.log('indevlistid',inDevListId);
+        console.log('=== :',context.idList === inDevListId);
         if (context.idList === inDevListId) {
             console.log('go in if statement');
             t.set(context.card, 'shared', {
