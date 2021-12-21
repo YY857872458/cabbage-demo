@@ -26,7 +26,7 @@ onSaveBtnClick = () => {
             }).then(function () {
                 t.get(context.card, 'shared', 'changedDesc')
                     .then(res => console.log('afterChanged: ',res));
-                t.get(context.card, 'shared', 'Desc')
+                t.get(context.card, 'shared', 'desc')
                     .then(res => console.log('desc: ',res))
             })
         }
