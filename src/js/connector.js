@@ -8,7 +8,7 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
-var inDevListId = null;
+var inDevListId;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
     const context = t.getContext();
@@ -16,25 +16,21 @@ const cardButtons = function (t, opts) {
         console.log('lists', JSON.stringify(lists, null, 2));
 
         lists.forEach(function (list) {
-            if(list.name === 'IN DEV'){
+            if (list.name === 'IN DEV') {
                 inDevListId = list.id;
-                console.log('indev list id0:',inDevListId)
             }
         });
-        console.log('indev list id1 :', inDevListId);
-        return inDevListId;
+        if (context.idList === inDevListId && t.get(context.card, 'shared', 'originalDesc') !== undefined) {
+            t.set(context.card, 'shared', {
+                originalDesc: t.card('desc').get('desc'),
+            }).then(function () {
+                t.get(context.card, 'shared', 'name').then(res => console.log('t.get name after set', res))
+                t.get(context.card, 'shared', 'desc').then(res => console.log('t.get desc after set', res))
+                t.get(context.card, 'shared', 'version').then(res => console.log('t.get version after set', res))
+            })
+        }
     })
-    console.log('indev list id2: ', inDevListId);
-    if (context.idList === inDevListId) {
-        t.set(context.card, 'shared', {
-            originalName: t.card('name').get('name'),
-            originalDesc: t.card('desc').get('desc'),
-        }).then(function () {
-            t.get(context.card, 'shared', 'name').then(res => console.log('t.get name after set', res))
-            t.get(context.card, 'shared', 'desc').then(res => console.log('t.get desc after set', res))
-            t.get(context.card, 'shared', 'version').then(res => console.log('t.get version after set', res))
-        })
-    }
+
 
     return [{
         text: 'Demand Changes',
