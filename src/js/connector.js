@@ -21,9 +21,10 @@ const cardButtons = function (t, opts) {
             }
         });
         t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ',JSON.stringify(res)))
-        console.log('context.idList',context.idList);
+        console.log('context.idList',t.card('idList').get('idList'));
         console.log('indevlistid',inDevListId);
-        console.log('=== :',context.idList === inDevListId);
+        console.log('idlist === const :',t.card('idList').get('idList') === inDevListId);
+        console.log('t.get() === undefined :', t.get(context.card,'shared','originalDesc') === undefined);
         if (context.idList === inDevListId) {
             console.log('go in if statement');
             t.set(context.card, 'shared', {
@@ -63,10 +64,6 @@ window.TrelloPowerUp.initialize(
                 })
         },
         "board-buttons": function (t, opts) {
-            // t.lists('id', 'name').then(function (listsIdAndName) {
-            //     listsIdAndName.forEach(listName => listName.name === 'IN DEV' ? initializeData(t, listName.id) : null)
-            //     console.log('t.lists: ' + JSON.stringify(listsIdAndName))
-            // })
             return [{
                 text: 'Callback',
                 callback: onBoardBtn,
@@ -83,15 +80,6 @@ const onBoardBtn = function (t, opts) {
     });
 }
 
-const initializeData = function (t, listId) {
-    var inDevCards = [];
-    return t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
-        allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
-        // inDevCards.forEach(card => t.set(card.id,'shared','desc',card.desc))
-        console.log('in dev cards: \n' + JSON.stringify(inDevCards, null, 2));
-        return inDevCards;
-    })
-}
 
 
 
