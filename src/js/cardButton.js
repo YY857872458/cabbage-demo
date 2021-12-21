@@ -11,8 +11,8 @@ onRecordBtnClick = () => {
     requirementChangeCount = requirementChangeCount + 1;
     showRequirementChangeCount(`Total Changes: ${requirementChangeCount}`);
 }
-let currentDesc;
 onSaveBtnClick = () => {
+    let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
         console.log('before saved desc: ', res);
         currentDesc = curDesc;
