@@ -20,7 +20,8 @@ const cardButtons = function (t, opts) {
                 inDevListId = list.id;
             }
         });
-        if (context.idList === inDevListId && t.get(context.card, 'shared', 'originalDesc').then(res => res !== undefined)) {
+        t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ',JSON.stringify(res)))
+        if (context.idList === inDevListId) {
             console.log('go in if statement');
             t.set(context.card, 'shared', {
                 originalDesc: t.card('desc').get('desc'),
@@ -30,8 +31,6 @@ const cardButtons = function (t, opts) {
             })
         }
     })
-
-
     return [{
         text: 'Demand Changes',
         icon: '🔺',
