@@ -14,7 +14,7 @@ onRecordBtnClick = () => {
 onSaveBtnClick = () => {
     let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
-        console.log('before saved desc: ', res);
+        console.log('current desc: ', curDesc);
         currentDesc = curDesc;
         console.log('let currentDesc: ', currentDesc);
     });
