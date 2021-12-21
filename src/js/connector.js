@@ -8,10 +8,27 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
-
+let inDevListId;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
-    var context = t.getContext();
+    const context = t.getContext();
+    t.lists('id', 'name').then(function (lists) {
+        lists.forEach(list => list.name === 'IN DEV' ? inDevListId === list.id : null)
+        console.log('indev list id1 :', inDevListId)
+        return inDevListId;
+    })
+    console.log('indev list id2: ', inDevListId)
+    if (context.idList === inDevListId) {
+        t.set(context.card, 'shared', {
+            name: t.card('name').get('name'),
+            desc: t.card('desc').get('desc'),
+            version: 1
+        }).then(function () {
+            t.get(context.card, 'shared', 'name').then(res => console.log('t.get name after set', res))
+            t.get(context.card, 'shared', 'desc').then(res => console.log('t.get desc after set', res))
+            t.get(context.card, 'shared', 'version').then(res => console.log('t.get version after set', res))
+        })
+    }
 
     // //点开一张卡，拿到一下信息
     // t.card('id', 'name', 'desc', 'members').then(function (result) {
@@ -60,10 +77,10 @@ window.TrelloPowerUp.initialize(
                 })
         },
         "board-buttons": function (t, opts) {
-            t.lists('id', 'name').then(function (listsIdAndName) {
-                listsIdAndName.forEach(listName => listName.name === 'IN DEV' ? initializeData(t, listName.id) : null)
-                console.log('t.lists: ' + JSON.stringify(listsIdAndName))
-            })
+            // t.lists('id', 'name').then(function (listsIdAndName) {
+            //     listsIdAndName.forEach(listName => listName.name === 'IN DEV' ? initializeData(t, listName.id) : null)
+            //     console.log('t.lists: ' + JSON.stringify(listsIdAndName))
+            // })
             return [{
                 text: 'Callback',
                 callback: onBoardBtn,
@@ -82,13 +99,12 @@ const onBoardBtn = function (t, opts) {
 
 const initializeData = function (t, listId) {
     var inDevCards = [];
-    t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
-        console.log('t.cards:' + JSON.stringify(allCards));
+    return t.cards("id", "idList", "name", "desc", "members").then(function (allCards) {
         allCards.forEach(card => card.idList === listId ? inDevCards.push(card) : null);
-        console.log('in dev cards: \n' + JSON.stringify(inDevCards,null,2));
+        // inDevCards.forEach(card => t.set(card.id,'shared','desc',card.desc))
+        console.log('in dev cards: \n' + JSON.stringify(inDevCards, null, 2));
         return inDevCards;
     })
-    console.log('in dev cards: after return->\n' + JSON.stringify(inDevCards,null,2));
 }
 
 
