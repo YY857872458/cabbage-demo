@@ -12,14 +12,7 @@ var inDevListId = null;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
     const context = t.getContext();
-    // t.lists('id', 'name').then(function (lists) {
-    //     console.log('lists', JSON.stringify(lists, null, 2));
-    //     lists.forEach(list => list.name === 'IN DEV' ? inDevListId === list.id : null);
-    //     console.log('indev list id1 :', inDevListId);
-    //     return inDevListId;
-    // })
-    // console.log('indev list id2: ', inDevListId);
-    // if (context.idList === inDevListId) {
+
         t.set(context.card, 'shared', {
             name: t.card('name').get('name'),
             desc: t.card('desc').get('desc'),
