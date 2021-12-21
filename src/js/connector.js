@@ -21,12 +21,12 @@ const cardButtons = function (t, opts) {
             }
         });
         if (context.idList === inDevListId && t.get(context.card, 'shared', 'originalDesc') !== undefined) {
+            console.log('go in if statement');
             t.set(context.card, 'shared', {
                 originalDesc: t.card('desc').get('desc'),
             }).then(function () {
-                t.get(context.card, 'shared', 'name').then(res => console.log('t.get name after set', res))
-                t.get(context.card, 'shared', 'desc').then(res => console.log('t.get desc after set', res))
-                t.get(context.card, 'shared', 'version').then(res => console.log('t.get version after set', res))
+                console.log("go in get statement");
+                t.get(context.card, 'shared', 'originalDesc').then(res => console.log('t.get desc after set', res))
             })
         }
     })
