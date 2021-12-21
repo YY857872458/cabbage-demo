@@ -13,13 +13,12 @@ const cardButtons = function (t, opts) {
     let inDevListId = 0;
     const context = t.getContext();
     t.lists('id', 'name').then(function (lists) {
-        console.log('lists',JSON.stringify(lists,null,2))
-        lists.forEach(list => console.log('list name:',list.name))
-        lists.forEach(list => console.log('list id',list.id))
-        console.log('indev list id1 :', inDevListId)
+        console.log('lists',JSON.stringify(lists,null,2));
+        lists.forEach(list => list.name === 'IN DEV'?list.id === inDevListId:null);
+        console.log('indev list id1 :', inDevListId);
         return inDevListId;
     })
-    console.log('indev list id2: ', inDevListId)
+    console.log('indev list id2: ', inDevListId);
     if (context.idList === inDevListId) {
         t.set(context.card, 'shared', {
             name: t.card('name').get('name'),
