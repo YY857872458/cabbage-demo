@@ -19,6 +19,7 @@ const cardButtons = function (t, opts) {
             }
         });
         // let currentListId;
+        let getOriginalDesc;
         // t.card('idList').get('idList').then(cardListId => console.log('cardListid: ',cardListId));
         // console.log('currentListId: ', currentListId);
         console.log('context.idList', JSON.stringify(t.getContext(), null, 2));
@@ -28,7 +29,11 @@ const cardButtons = function (t, opts) {
         if (context.list === inDevListId) {
             t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ', JSON.stringify(res)))
 
-            console.log('t.get() === undefined :', t.get(context.card, 'shared', 'originalDesc', '').then(res => res === ''));
+            t.get(context.card, 'shared', 'originalDesc', '').then(function (res) {
+                console.log('res === \'\':', res === '');
+                getOriginalDesc = res;
+                console.log('getOriginalDesc: ', getOriginalDesc);
+            });
             console.log('go in if statement');
 
             t.set(context.card, 'shared', {
