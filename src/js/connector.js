@@ -13,14 +13,11 @@ const cardButtons = function (t, opts) {
     let currentCardVersion;
     const context = t.getContext();
     t.lists('id', 'name').then(function (lists) {
-        console.log('lists', JSON.stringify(lists, null, 2));
-
         lists.forEach(function (list) {
             if (list.name === 'IN DEV') {
                 inDevListId = list.id;
             }
         });
-        t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ', JSON.stringify(res)))
         // let currentListId;
         // t.card('idList').get('idList').then(cardListId => console.log('cardListid: ',cardListId));
         // console.log('currentListId: ', currentListId);
@@ -28,9 +25,12 @@ const cardButtons = function (t, opts) {
         console.log('indevlistid', inDevListId);
         console.log('idlist === const :',( context.list === inDevListId));
 
-        console.log('t.get() === undefined :', t.get(context.card, 'shared', 'originalDesc','')==='');
         if (context.list === inDevListId) {
+            t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ', JSON.stringify(res)))
+
+            console.log('t.get() === undefined :', t.get(context.card, 'shared', 'originalDesc','')==='');
             console.log('go in if statement');
+
             t.set(context.card, 'shared', {
                 originalDesc: t.card('desc').get('desc'),
             }).then(function () {
