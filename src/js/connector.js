@@ -8,9 +8,9 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
+let inDevListId = null;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
-    let inDevListId = 0;
     const context = t.getContext();
     t.lists('id', 'name').then(function (lists) {
         console.log('lists', JSON.stringify(lists, null, 2));

@@ -13,7 +13,8 @@ onRecordBtnClick = () => {
 }
 
 onSaveBtnClick = () => {
-
+    t.card('desc').get('desc').then(currentDesc => console.log('currentDesc: ',currentDesc));
+    t.get(context.card,'shared','desc').then(res=>console.log('before saved desc: ',res))
     t.set(context.card, 'shared', {requirementChangeCount})
         .then(() => {
                 showRequirementChangeCount(`Total Changes: ${requirementChangeCount}` + '(save successfully!)');
