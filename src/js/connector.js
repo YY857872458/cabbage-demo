@@ -8,13 +8,14 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
-let inDevListId;
 const cardButtons = function (t, opts) {
     let currentCardVersion;
+    let inDevListId;
     const context = t.getContext();
     t.lists('id', 'name').then(function (lists) {
         console.log('lists',JSON.stringify(lists,null,2))
-        lists.forEach(list => list.name === 'IN DEV' ? inDevListId === list.id : null)
+        lists.forEach(list => console.log('list name:',list.name))
+        lists.forEach(list => console.log('list id',list.id))
         console.log('indev list id1 :', inDevListId)
         return inDevListId;
     })
