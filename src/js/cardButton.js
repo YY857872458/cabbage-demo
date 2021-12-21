@@ -1,3 +1,5 @@
+const Diff = require('diff');
+const process = require("colors");
 const t = window.TrelloPowerUp.iframe();
 
 const context = t.getContext();
@@ -18,16 +20,33 @@ onSaveBtnClick = () => {
         currentDesc = curDesc;
         console.log('let currentDesc: ', currentDesc);
     });
-    t.get(context.card, 'shared', 'desc').then(function (res) {
-        console.log('before saved desc: ', res)
-        if (currentDesc !== res) {
+    t.get(context.card, 'shared', 'desc').then(function (lastDesc) {
+        console.log('before saved desc: ', lastDesc)
+
+        // const diff = Diff.diffChars(lastDesc,currentDesc),
+        //     display = document.getElementById('display'),
+        //     fragment = document.createDocumentFragment();
+
+        const diff = Diff.diffChars(lastDesc,currentDesc);
+        console.log(JSON.stringify('diff: ',diff));
+        diff.forEach((part) => {
+            // green for additions, red for deletions
+            // grey for common parts
+            const color = part.added ? 'green' :
+                part.removed ? 'red' : 'grey';
+            process.stderr.write(part.value[color]);
+        });
+        console.log();
+
+
+        if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,
             }).then(function () {
                 t.get(context.card, 'shared', 'changedDesc')
-                    .then(res => console.log('afterChanged: ',res));
+                    .then(res => console.log('afterChanged desc: \n',res));
                 t.get(context.card, 'shared', 'desc')
-                    .then(res => console.log('desc: ',res))
+                    .then(res => console.log('previous desc: \n',res))
             })
         }
     })
