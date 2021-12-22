@@ -62,15 +62,11 @@ window.showLastDescDiff = function () {
 
 window.onDiffBtnClick = function (){
     console.log('new page');
-    console.log(diffDesc);
-    console.log(diffDesc.length);
     let diffStr = "";
     for (let i = 0; i < diffDesc.length; i++) {
-        diffStr += '<div>' + diffDesc[i] + '</div>';
-        console.log(diffStr);
+        diffStr += '<div>' + diffDesc[i].value + '</div>';
+        console.log('diffDesc: ',diffStr);
     }
-    console.log('<div>')
-    console.log('\<div\>')
     document.getElementById("diffDesc").innerHTML = diffStr;
     return t.modal({
         // the url to load for the iframe
