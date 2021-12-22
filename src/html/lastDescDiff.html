@@ -6,8 +6,15 @@
 </head>
 <body>
     <div class="content" id="diffDesc">
-        。。。
     </div>
+    <script>
+        let diffStr = "";
+        for (let i = 0; i < diffDesc.length; i++) {
+            diffStr += '<div>' + diffDesc[i].value + '</div>';
+            console.log('diffDesc: ',diffStr);
+        }
+        document.getElementById("diffDesc").innerHTML = diffStr;
+    </script>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <script src="../js/cardButton.js"></script>
 </body>
