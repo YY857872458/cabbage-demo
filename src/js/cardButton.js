@@ -1,3 +1,4 @@
+const {Diff} = require("diff");
 const t = window.TrelloPowerUp.iframe();
 
 const context = t.getContext();
@@ -18,7 +19,7 @@ onSaveBtnClick = () => {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        console.log('before saved originalDesc: ', lastDesc)
+        console.log('previous saved originalDesc: ', lastDesc)
         // const Diff = require("diff");
         //
         const diff = Diff.diffChars(lastDesc,currentDesc);
