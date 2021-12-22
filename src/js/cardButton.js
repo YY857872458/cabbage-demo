@@ -20,27 +20,16 @@ window.onSaveBtnClick = function () {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        console.log('previous saved originalDesc: ', lastDesc);
-        console.log('lastDesc.fulfillmentValue: ', lastDesc.fulfillmentValue);
-        console.log('lastDesc.fulfillmentValue typeof: ', typeof lastDesc.fulfillmentValue);
-        // console.log('string diff: ', Diff.diffChars("a", "b"));
-        // console.log('lastDesc.toString: ', lastDesc.toString());
-        // console.log('currentDesc.toString: ', currentDesc.toString());
-        // console.log('lastDesc type: ', typeof lastDesc);
-        console.log('currentDesc: ', currentDesc);
-        console.log('currentDesc type: ', typeof currentDesc);
         const diff = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
-        const diff2 = Diff.diffChars("二", "二二二");
         console.log('diff：', diff);
-        console.log('diff2: ', diff2);
-        // diff.forEach((part) => {
-        //     // green for additions, red for deletions
-        //     // grey for common parts
-        //     const color = part.added ? 'green' :
-        //         part.removed ? 'red' : 'grey';
-        //     process.stderr.write(part.value[color]);
-        // });
-        // console.log();
+        diff.forEach((part) => {
+            // green for additions, red for deletions
+            // grey for common parts
+            const color = part.added ? 'green' :
+                part.removed ? 'red' : 'grey';
+            process.stderr.write(part.value[color]);
+        });
+        console.log();
         if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,

@@ -13,33 +13,6 @@
     </div>
 </div>
 <pre id="display"></pre>
-
-<script type="module">
-    const {Diff} = require("diff");
-    const one = 'beep boop',
-        other = 'beep boob blah',
-        color = '';
-
-    let span = null;
-
-    const diff = Diff.diffChars(one, other),
-        display = document.getElementById('display'),
-        fragment = document.createDocumentFragment();
-
-    diff.forEach((part) => {
-        // green for additions, red for deletions
-        // grey for common parts
-        const color = part.added ? 'green' :
-            part.removed ? 'red' : 'grey';
-        span = document.createElement('span');
-        span.style.color = color;
-        span.appendChild(document
-            .createTextNode(part.value));
-        fragment.appendChild(span);
-    });
-
-    display.appendChild(fragment);
-</script>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <script src="../js/cardButton.js"></script>
 </body>
