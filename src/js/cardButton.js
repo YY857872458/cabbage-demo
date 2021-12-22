@@ -20,7 +20,7 @@ window.onSaveBtnClick = function () {
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
         diffDesc = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
-        console.log('diff：', diff);
+        console.log('diff：', diffDesc);
         // diff.forEach((part) => {
         //     // green for additions, red for deletions
         //     // grey for common parts
@@ -62,6 +62,8 @@ window.showLastDescDiff = function () {
 
 window.onDiffBtnClick = function (){
     console.log('new page');
+    console.log(diffDesc);
+    console.log(diffDesc.length);
     let diffStr = "";
     for (let i = 0; i < diffDesc.length; i++) {
         diffStr += '<div>' + diffDesc[i] + '</div>';
