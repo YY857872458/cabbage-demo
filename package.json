@@ -10,6 +10,7 @@
     "build": "parcel build src/html/*.html"
   },
   "devDependencies": {
+    "@types/node": "^17.0.2",
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
