@@ -5,9 +5,13 @@
     <link rel="stylesheet" href="../styles/desc-diff.css">
 </head>
 <body>
-<div class="content" id="diffDesc"></div>
+<div id="diffDesc"></div>
+<script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
+<script src="../js/cardButton.js"></script>
+</body>
 <script>
     getDiffDesc();
+
     function getDiffDesc() {
         let diffStr = "";
         for (let i = 0; i < diffDesc.length; i++) {
@@ -17,7 +21,4 @@
         document.getElementById("diffDesc").innerHTML = diffStr;
     }
 </script>
-<script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
-<script src="../js/cardButton.js"></script>
-</body>
 </html>
