@@ -31,8 +31,8 @@ onSaveBtnClick = () => {
         console.log('currentDesc type: ', typeof currentDesc);
         const diff = jsDiff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         const diff2 = jsDiff.diffChars("二", "二二二");
-        console.log(JSON.stringify('diff: ', diff));
-        console.log(JSON.stringify('diff2: ', diff2));
+        console.log('diff：',diff);
+        console.log('diff2: ', diff2);
         // diff.forEach((part) => {
         //     // green for additions, red for deletions
         //     // grey for common parts
