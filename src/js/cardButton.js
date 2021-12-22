@@ -61,13 +61,15 @@ window.showLastDescDiff = function () {
 };
 
 let diffStr = "";
+for (let i = 0; i < diffDesc.length; i++) {
+    diffStr += '<div>' + diffDesc[i].value + '</div>';
+    console.log('diffDesc: ',diffStr);
+}
+document.getElementById("diffDesc").innerHTML = `${diffStr}`;
+
 window.onDiffBtnClick = function (){
     console.log('new page');
-    for (let i = 0; i < diffDesc.length; i++) {
-        diffStr += '<div>' + diffDesc[i].value + '</div>';
-        console.log('diffDesc: ',diffStr);
-    }
-    document.getElementById("diffDesc").innerHTML = `${diffStr}`;
+
     return t.modal({
         // the url to load for the iframe
         url: './lastDescDiff.html',
