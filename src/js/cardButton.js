@@ -20,8 +20,6 @@ onSaveBtnClick = () => {
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
         console.log('previous saved originalDesc: ', lastDesc)
-        // const Diff = require("diff");
-        //
         const diff = Diff.diffChars(lastDesc,currentDesc);
         console.log(JSON.stringify('diff: ',diff));
         diff.forEach((part) => {
