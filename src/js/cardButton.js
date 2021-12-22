@@ -23,7 +23,11 @@ onSaveBtnClick = () => {
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
         console.log('previous saved originalDesc: ', lastDesc)
         console.log('string diff: ',jsDiff.diffChars("a","b"));
-        const diff = jsDiff.diffChars(lastDesc,currentDesc);
+        console.log('lastDesc.toString: ',lastDesc.toString());
+        console.log('currentDesc.toString: ',currentDesc.toString());
+        console.log('lastDesc type: ',typeof lastDesc);
+        console.log('currentDesc type: ',typeof currentDesc);
+        const diff = jsDiff.diffChars(lastDesc.toString(),currentDesc.toString());
         console.log(JSON.stringify('diff: ',diff));
         diff.forEach((part) => {
             // green for additions, red for deletions
