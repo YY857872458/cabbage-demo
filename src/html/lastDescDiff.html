@@ -5,16 +5,18 @@
     <link rel="stylesheet" href="../styles/desc-diff.css">
 </head>
 <body>
-    <div class="content" id="diffDesc">
-    </div>
-    <script>
+<div class="content" id="diffDesc"></div>
+<script>
+    getDiffDesc();
+    function getDiffDesc() {
         let diffStr = "";
         for (let i = 0; i < diffDesc.length; i++) {
             diffStr += '<div>' + diffDesc[i].value + '</div>';
-            console.log('diffDesc: ',diffStr);
+            console.log('diffDesc: ', diffStr);
         }
         document.getElementById("diffDesc").innerHTML = diffStr;
-    </script>
+    }
+</script>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <script src="../js/cardButton.js"></script>
 </body>
