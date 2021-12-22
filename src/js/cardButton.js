@@ -35,7 +35,7 @@ window.onSaveBtnClick = function () {
             }).then(function () {
                 t.get(context.card, 'shared', 'changedDesc')
                     .then(res => console.log('afterChanged desc: \n', res));
-                t.get(context.card, 'shared', 'desc')
+                t.get(context.card, 'shared', 'originalDesc')
                     .then(res => console.log('previous desc: \n', res))
             })
         }
@@ -67,7 +67,10 @@ window.onDiffBtnClick = function (){
     let diffStr = "";
     for (let i = 0; i < diffDesc.length; i++) {
         diffStr += '<div>' + diffDesc[i] + '</div>';
+        console.log(diffStr);
     }
+    console.log('<div>')
+    console.log('\<div\>')
     document.getElementById("diffDesc").innerHTML = diffStr;
     return t.modal({
         // the url to load for the iframe
@@ -75,8 +78,6 @@ window.onDiffBtnClick = function (){
         // optional arguments to be passed to the iframe as query parameters
         // access later with t.arg('text')
         args: { text: 'Hello' },
-        // optional color for header chrome
-        accentColor: '#F2D600',
         // initial height for iframe
         height: 500, // not used if fullscreen is true
         // whether the modal should stretch to take up the whole screen
