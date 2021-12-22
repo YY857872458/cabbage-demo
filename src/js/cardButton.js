@@ -7,11 +7,11 @@ t.get(context.card, 'shared', 'requirementChangeCount', 0).then(requirementChang
     showRequirementChangeCount(`Total Changes: ${requirementChangeCount}`);
 });
 
-onRecordBtnClick = () => {
+window.onRecordBtnClick = function () {
     requirementChangeCount = requirementChangeCount + 1;
     showRequirementChangeCount(`Total Changes: ${requirementChangeCount}`);
 }
-onSaveBtnClick = () => {
+window.onSaveBtnClick = function () {
     const Diff = require("diff");
 
     let currentDesc;
@@ -61,7 +61,7 @@ onSaveBtnClick = () => {
             });
 }
 
-showRequirementChangeCount = requirementChangeCount => {
+window.showRequirementChangeCount = function (requirementChangeCount) {
     let element = document.getElementById('requirementChangeCount');
     element.innerHTML = requirementChangeCount;
 }
