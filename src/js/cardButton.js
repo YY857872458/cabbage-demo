@@ -62,7 +62,6 @@ window.showLastDescDiff = function () {
 window.onDiffBtnClick = function (){
     console.log('new page');
     return t.popup({
-        title: 'Description',
-        url: './lastDescDiff.html'
+        title: 'Description'
     });
 }
