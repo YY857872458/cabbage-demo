@@ -8,9 +8,8 @@ const onBtnClick = function (t, opts) {
         url: './cardButton.html'
     });
 };
-var inDevListId;
+let inDevListId;
 const cardButtons = function (t, opts) {
-    let currentCardVersion;
     const context = t.getContext();
     t.lists('id', 'name').then(function (lists) {
         lists.forEach(function (list) {
@@ -18,30 +17,17 @@ const cardButtons = function (t, opts) {
                 inDevListId = list.id;
             }
         });
-        // let currentListId;
-        let getOriginalDesc;
-        // t.card('idList').get('idList').then(cardListId => console.log('cardListid: ',cardListId));
-        // console.log('currentListId: ', currentListId);
-        console.log('context.idList', JSON.stringify(t.getContext(), null, 2));
-        console.log('indevlistid', inDevListId);
-        console.log('idlist === const :', (context.list === inDevListId));
-
         if (context.list === inDevListId) {
-            t.get(context.card, 'shared', 'originalDesc').then(res => console.log('see what originalDesc is-> ', JSON.stringify(res)))
-
             t.get(context.card, 'shared', 'originalDesc', '').then(function (res) {
-                console.log('res === \'\':', res === '');
-                getOriginalDesc = res;
-                console.log('getOriginalDesc: ', getOriginalDesc);
+                console.log('res: ', res);
+                if(res !== ''){
+                    t.set(context.card, 'shared', {
+                        originalDesc: t.card('desc').get('desc'),
+                    }).then(function () {
+                        t.get(context.card, 'shared', 'originalDesc').then(res => console.log('t.get desc after set', res))
+                    })
+                }
             });
-            console.log('go in if statement');
-
-            t.set(context.card, 'shared', {
-                originalDesc: t.card('desc').get('desc'),
-            }).then(function () {
-                console.log("go in get statement");
-                t.get(context.card, 'shared', 'originalDesc').then(res => console.log('t.get desc after set', res))
-            })
         }
     })
     return [{

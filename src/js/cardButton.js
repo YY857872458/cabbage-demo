@@ -14,24 +14,23 @@ onRecordBtnClick = () => {
 onSaveBtnClick = () => {
     let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
-        console.log('current desc: ', curDesc);
         currentDesc = curDesc;
         console.log('let currentDesc: ', currentDesc);
     });
-    t.get(context.card, 'shared', 'desc').then(function (lastDesc) {
-        console.log('before saved desc: ', lastDesc)
+    t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
+        console.log('before saved originalDesc: ', lastDesc)
         // const Diff = require("diff");
         //
-        // const diff = Diff.diffChars(lastDesc,currentDesc);
-        // console.log(JSON.stringify('diff: ',diff));
-        // diff.forEach((part) => {
-        //     // green for additions, red for deletions
-        //     // grey for common parts
-        //     const color = part.added ? 'green' :
-        //         part.removed ? 'red' : 'grey';
-        //     process.stderr.write(part.value[color]);
-        // });
-        // console.log();
+        const diff = Diff.diffChars(lastDesc,currentDesc);
+        console.log(JSON.stringify('diff: ',diff));
+        diff.forEach((part) => {
+            // green for additions, red for deletions
+            // grey for common parts
+            const color = part.added ? 'green' :
+                part.removed ? 'red' : 'grey';
+            process.stderr.write(part.value[color]);
+        });
+        console.log();
         if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,
