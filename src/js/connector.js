@@ -19,7 +19,7 @@ const cardButtons = function (t, opts) {
         });
         if (context.list === inDevListId) {
             t.get(context.card, 'shared', 'originalDesc', '').then(function (res) {
-                console.log('res: ', res);
+                console.log('res === \'\': ', res === '');
                 if(res === ''){
                     t.set(context.card, 'shared', {
                         originalDesc: t.card('desc').get('desc'),
