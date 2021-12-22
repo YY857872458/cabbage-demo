@@ -67,7 +67,7 @@ window.onDiffBtnClick = function (){
         diffStr += '<div>' + diffDesc[i].value + '</div>';
         console.log('diffDesc: ',diffStr);
     }
-    document.getElementById("diffDesc").innerHTML = diffStr;
+    document.getElementById("diffDesc").innerHTML = `${diffStr}`;
     return t.modal({
         // the url to load for the iframe
         url: './lastDescDiff.html',
