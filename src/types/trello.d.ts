@@ -289,10 +289,9 @@ export namespace Trello {
                 display?: AlertDisplay;
             }): PromiseLike<void>;
             hideAlert(): PromiseLike<void>;
+
             popup(
-                options: PopupOptions | PopupSearchOptions |
-                    PopupIframeOptions | PopupDateOptions |
-                    PopupConfirmOptions | PopupConfirmWithCancelOptions): PromiseLike<void>;
+                options: {}): PromiseLike<void>;
             overlay(options: {
                 url: string;
                 args: { [key: string]: any};

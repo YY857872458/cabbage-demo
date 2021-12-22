@@ -13,7 +13,6 @@ window.onRecordBtnClick = function () {
 }
 window.onSaveBtnClick = function () {
     const Diff = require("diff");
-
     let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
         currentDesc = curDesc;
@@ -22,14 +21,14 @@ window.onSaveBtnClick = function () {
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
         const diff = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diff);
-        diff.forEach((part) => {
-            // green for additions, red for deletions
-            // grey for common parts
-            const color = part.added ? 'green' :
-                part.removed ? 'red' : 'grey';
-            process.stderr.write(part.value[color]);
-        });
-        console.log();
+        // diff.forEach((part) => {
+        //     // green for additions, red for deletions
+        //     // grey for common parts
+        //     const color = part.added ? 'green' :
+        //         part.removed ? 'red' : 'grey';
+        //     process.stderr.write(part.value[color]);
+        // });
+        // console.log();
         if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,
@@ -54,3 +53,11 @@ window.showRequirementChangeCount = function (requirementChangeCount) {
     let element = document.getElementById('requirementChangeCount');
     element.innerHTML = requirementChangeCount;
 }
+
+window.showLastDescDiff = function () {
+
+    return t.popup({
+        title:'Description',
+        text: 'what?'
+    });
+};
