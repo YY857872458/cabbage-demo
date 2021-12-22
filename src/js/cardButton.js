@@ -1,6 +1,7 @@
 const t = window.TrelloPowerUp.iframe();
 const context = t.getContext();
 let requirementChangeCount;
+let diffDesc;
 t.get(context.card, 'shared', 'requirementChangeCount', 0).then(requirementChangeCountInResponse => {
     requirementChangeCount = requirementChangeCountInResponse;
     showRequirementChangeCount(`Total Changes: ${requirementChangeCount}`);
@@ -18,7 +19,7 @@ window.onSaveBtnClick = function () {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        const diff = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
+        diffDesc = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diff);
         // diff.forEach((part) => {
         //     // green for additions, red for deletions
@@ -61,6 +62,11 @@ window.showLastDescDiff = function () {
 
 window.onDiffBtnClick = function (){
     console.log('new page');
+    let diffStr = "";
+    for (let i = 0; i < diffDesc.length; i++) {
+        diffStr += '<div>' + diffDesc[i] + '</div>';
+    }
+    document.getElementById("diffDesc").innerHTML = diffStr;
     return t.modal({
         // the url to load for the iframe
         url: './lastDescDiff.html',
