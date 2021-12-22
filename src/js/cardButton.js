@@ -60,9 +60,9 @@ window.showLastDescDiff = function () {
     }];
 };
 
+let diffStr = "";
 window.onDiffBtnClick = function (){
     console.log('new page');
-    let diffStr = "";
     for (let i = 0; i < diffDesc.length; i++) {
         diffStr += '<div>' + diffDesc[i].value + '</div>';
         console.log('diffDesc: ',diffStr);
