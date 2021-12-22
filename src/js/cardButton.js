@@ -30,14 +30,14 @@ onSaveBtnClick = () => {
         // console.log('currentDesc type: ', typeof currentDesc);
         const diff = jsDiff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         console.log(JSON.stringify('diff: ', diff));
-        diff.forEach((part) => {
-            // green for additions, red for deletions
-            // grey for common parts
-            const color = part.added ? 'green' :
-                part.removed ? 'red' : 'grey';
-            process.stderr.write(part.value[color]);
-        });
-        console.log();
+        // diff.forEach((part) => {
+        //     // green for additions, red for deletions
+        //     // grey for common parts
+        //     const color = part.added ? 'green' :
+        //         part.removed ? 'red' : 'grey';
+        //     process.stderr.write(part.value[color]);
+        // });
+        // console.log();
         if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,
