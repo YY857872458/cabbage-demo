@@ -80,12 +80,10 @@ window.onDiffBtnClick = function (){
         // optional action buttons for header chrome
         // max 3, up to 1 on right side
         actions: [{
-            icon: './images/icon.svg',
             url: 'https://google.com',
             alt: 'Leftmost',
             position: 'left',
         }, {
-            icon: './images/icon.svg',
             callback: (tr) => tr.popup({
                 title: tr.localizeKey('appear_in_settings'),
                 url: 'settings.html',
@@ -94,7 +92,6 @@ window.onDiffBtnClick = function (){
             alt: 'Second from left',
             position: 'left',
         }, {
-            icon: './images/icon.svg',
             callback: () => console.log(':tada:'),
             alt: 'Right side',
             position: 'right',
