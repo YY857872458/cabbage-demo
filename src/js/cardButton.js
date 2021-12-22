@@ -1,5 +1,4 @@
 const t = window.TrelloPowerUp.iframe();
-
 const context = t.getContext();
 let requirementChangeCount;
 t.get(context.card, 'shared', 'requirementChangeCount', 0).then(requirementChangeCountInResponse => {
@@ -55,9 +54,15 @@ window.showRequirementChangeCount = function (requirementChangeCount) {
 }
 
 window.showLastDescDiff = function () {
-
-    return t.popup({
-        title:'Description',
-        text: 'what?'
-    });
+    return [{
+        callback: onDiffBtnClick,
+    }];
 };
+
+window.onDiffBtnClick = function (){
+    console.log('new page');
+    return t.popup({
+        title: 'Description',
+        url: './lastDescDiff.html'
+    });
+}
