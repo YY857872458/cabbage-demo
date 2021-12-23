@@ -21,7 +21,10 @@ function getSavedDateTime() {
         // yy: now.getFullYear().toString().slice(-2),
         yyyy: now.getFullYear()
     }
-    return 'yyyy/mm/dd'.replace(/mm|dd|yy|yyyy/gi, matched => map[matched])
+    console.log('now.getDate: ', now.getDate());
+    return 'yyyy/mm/dd'.replace('mm', now.getMonth() + 1)
+        .replace('yyyy', now.getFullYear())
+        .replace('dd', now.getDate());
 }
 
 window.onSaveBtnClick = function () {
