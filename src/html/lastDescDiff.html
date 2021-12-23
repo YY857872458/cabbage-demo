@@ -5,12 +5,34 @@
     <link rel="stylesheet" href="../styles/desc-diff.css">
 </head>
 <body>
-<div id="diffDesc"></div>
+<div id="diffDesc" class="content"></div>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
-<script src="../js/lastDescDiff.js"></script>
+<!--<script src="../js/lastDescDiff.js"></script>-->
 </body>
+<pre id="display"></pre>
 <script>
     // getDiffDesc();
+    const color = '';
+    const t = window.TrelloPowerUp.iframe();
+    const context = t.getContext();
+    let span = null;
+    t.get(context.card,'shared','diff').then(function (diff) {
+        console.log('diff in html',diff);
+        const display = document.getElementById('display');
+        const fragment = document.createDocumentFragment();
 
+        diff.forEach((part) => {
+            // green for additions, red for deletions
+            // grey for common parts
+            const color = part.added ? 'green' :
+                part.removed ? 'red' : 'grey';
+            span = document.createElement('span');
+            span.style.color = color;
+            span.appendChild(document
+                .createTextNode(part.value));
+            fragment.appendChild(span);
+        });
+        display.appendChild(fragment);
+    })
 </script>
 </html>
