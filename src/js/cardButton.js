@@ -54,11 +54,11 @@ showRequirementChangeCount = function (requirementChangeCount) {
     element.innerHTML = requirementChangeCount;
 }
 
-window.showLastDescDiff = function () {
-    return [{
-        callback: onDiffBtnClick,
-    }];
-};
+// window.showLastDescDiff = function () {
+//     return [{
+//         callback: onDiffBtnClick,
+//     }];
+// };
 
 window.onDiffBtnClick = function (){
     console.log('new page');
