@@ -35,10 +35,10 @@
         });
         display.appendChild(fragment);
     })
-    t.get(context.card,'shared','savedTime').then(function (time) {
-        console.log('time in html: ',time);
+    t.get(context.card, 'shared', 'savedTime').then(function (time) {
+        console.log('time in html: ', time);
         const date = document.getElementById('date');
-        date.appendChild(time);
+        date.innerHTML = time;
     })
 </script>
 </body>
