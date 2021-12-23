@@ -29,6 +29,9 @@ window.onSaveBtnClick = function () {
         //     process.stderr.write(part.value[color]);
         // });
         // console.log();
+        t.set(context.card, 'shared', {
+            diff: diffDescArray
+        })
         if (currentDesc !== lastDesc) {
             t.set(context.card, 'shared', {
                 changedDesc: currentDesc,
@@ -60,11 +63,11 @@ showRequirementChangeCount = function (requirementChangeCount) {
 //     }];
 // };
 
-window.onDiffBtnClick = function (){
+window.onDiffBtnClick = function () {
     console.log('new page');
     return t.modal({
         url: './lastDescDiff.html',
-        args: { text: 'Hello' },
+        args: {text: 'Hello'},
         // optional color for header chrome
         // accentColor: '#ebecf0',
         height: 500, // not used if fullscreen is true

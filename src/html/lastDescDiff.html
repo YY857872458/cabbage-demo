@@ -7,24 +7,10 @@
 <body>
 <div id="diffDesc"></div>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
-<script src="../js/cardButton.js"></script>
+<script src="../js/lastDescDiff.js"></script>
 </body>
 <script>
-    getDiffDesc();
+    // getDiffDesc();
 
-    function getDiffDesc() {
-        let diffStr = "";
-        console.log('1. diffDesc: ', diffDescArray);
-        console.log('2. diffDesc typeof: ', typeof diffDescArray);
-        console.log('3. diffDesc.length: ', diffDescArray.length);
-        console.log('3.5. diffDesc.length typeof: ', typeof diffDescArray.length);
-        for (let i = 0; i < diffDescArray.length; i++) {
-            diffStr += '<div>' + diffDescArray[i].value + '</div>';
-            console.log('4. diffStr in foreach: ', diffStr);
-        }
-        console.log('5. diffStr after foreach: ', diffStr);
-        console.log('6. type of diffStr: ', typeof diffStr);
-        document.getElementById("diffDesc").innerHTML = '一个字符串';
-    }
 </script>
 </html>
