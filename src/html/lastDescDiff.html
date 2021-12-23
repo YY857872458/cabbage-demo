@@ -5,13 +5,12 @@
     <link rel="stylesheet" href="../styles/desc-diff.css">
 </head>
 <body>
-<div id="diffDesc" class="content"></div>
+<!--<div id="diffDesc" class="content"></div>-->
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <!--<script src="../js/lastDescDiff.js"></script>-->
 </body>
 <pre id="display"></pre>
 <script>
-    // getDiffDesc();
     const color = '';
     const t = window.TrelloPowerUp.iframe();
     const context = t.getContext();
@@ -24,13 +23,35 @@
         diff.forEach((part) => {
             // green for additions, red for deletions
             // grey for common parts
-            const color = part.added ? 'green' :
-                part.removed ? 'red' : 'grey';
-            span = document.createElement('span');
-            span.style.color = color;
-            span.appendChild(document
-                .createTextNode(part.value));
-            fragment.appendChild(span);
+            // const color = part.added ? 'green' :
+            //     part.removed ? 'red' : '#172b4d';
+            // span = document.createElement('span');
+            // span.style.color = color;
+            // span.appendChild(document
+            //     .createTextNode(part.value));
+            // fragment.appendChild(span);
+            if(part.added){
+                const color = 'green';
+                span = document.createElement('ins');
+                span.style.color = color;
+                span.appendChild(document
+                    .createTextNode(part.value));
+                fragment.appendChild(span);
+            }else if(part.removed){
+                const color = 'red';
+                span = document.createElement('del');
+                span.style.color = color;
+                span.appendChild(document
+                    .createTextNode(part.value));
+                fragment.appendChild(span);
+            }else {
+                const color = '#172b4d'
+                span = document.createElement('span');
+                span.style.color = color;
+                span.appendChild(document
+                    .createTextNode(part.value));
+                fragment.appendChild(span);
+            }
         });
         display.appendChild(fragment);
     })
