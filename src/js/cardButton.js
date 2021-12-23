@@ -21,7 +21,7 @@ function getSavedDateTime() {
         yy: now.getFullYear().toString().slice(-2),
         yyyy: now.getFullYear()
     }
-    return 'yyyy/mm/dd'.replace(/mm|dd|yy|yyy/gi, matched => map[matched])
+    return 'yyyy/mm/dd'.replace(/mm|dd|yy|yyyy/, matched => map[matched])
 }
 
 window.onSaveBtnClick = function () {
