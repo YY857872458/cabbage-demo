@@ -1,5 +1,4 @@
 .desc {
-    margin-top: 6px;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -8,11 +7,13 @@
 }
 
 .content {
+    margin-top: 6px;
     float: left;
     margin-left: 20px;
 }
 
 .date {
+    margin-top: 6px;
     float: right;
     margin-right: 20px;
 }
