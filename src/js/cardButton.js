@@ -30,7 +30,7 @@ function getSavedDateTime() {
 window.onSaveBtnClick = function () {
     const Diff = require("diff");
     const savedDateTime = getSavedDateTime();
-    console.log('after formated savedDateTime: ', savedDateTime);
+    console.log('after formatted savedDateTime: ', savedDateTime);
 
     let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
@@ -79,6 +79,7 @@ window.onDiffBtnClick = function () {
         // optional color for header chrome
         // accentColor: '#ebecf0',
         height: 500, // not used if fullscreen is true
+        width:552,
         fullscreen: false,
         // optional function to be called if user closes modal (via `X` or escape, etc)
         callback: () => console.log('Goodbye.'),
