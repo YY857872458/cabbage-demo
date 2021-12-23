@@ -11,8 +11,24 @@ window.onRecordBtnClick = function () {
     requirementChangeCount = requirementChangeCount + 1;
     showRequirementChangeCount(`Total Changes: ${requirementChangeCount}`);
 }
+
+function getSavedDateTime() {
+    const savedTime = Date.now();
+    const now = new Date(savedTime);
+    const map = {
+        mm: now.getMonth() + 1,
+        dd: now.getDate(),
+        yy: now.getFullYear().toString().slice(-2),
+        yyyy: now.getFullYear()
+    }
+    return 'yyyy/mm/dd'.replace(/mm|dd|yy|yyy/gi, matched => map[matched])
+}
+
 window.onSaveBtnClick = function () {
     const Diff = require("diff");
+    const savedDateTime = getSavedDateTime();
+    console.log('after formated savedDateTime: ', savedDateTime);
+
     let currentDesc;
     t.card('desc').get('desc').then(function (curDesc) {
         currentDesc = curDesc;
@@ -22,7 +38,10 @@ window.onSaveBtnClick = function () {
         diffDescArray = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diffDescArray);
         t.set(context.card, 'shared', {
-            diff: diffDescArray
+            diff: diffDescArray,
+            savedTime: savedDateTime
+        }).then(function () {
+            t.get(context.card, 'shared', 'savedTime').then(res => console.log('savedTime: ', res))
         })
         // if (currentDesc !== lastDesc) {
         //     t.set(context.card, 'shared', {
