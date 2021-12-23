@@ -19,7 +19,7 @@ window.onSaveBtnClick = function () {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        diffDescArray = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
+        diffDescArray = Diff.diffLines(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diffDescArray);
         // diff.forEach((part) => {
         //     // green for additions, red for deletions

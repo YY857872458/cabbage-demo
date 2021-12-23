@@ -11,7 +11,7 @@
 </body>
 <pre id="display"></pre>
 <script>
-    const color = '';
+    let color = '';
     const t = window.TrelloPowerUp.iframe();
     const context = t.getContext();
     let span = null;
@@ -31,27 +31,19 @@
             //     .createTextNode(part.value));
             // fragment.appendChild(span);
             if(part.added){
-                const color = 'green';
+                color = 'green';
                 span = document.createElement('ins');
-                span.style.color = color;
-                span.appendChild(document
-                    .createTextNode(part.value));
-                fragment.appendChild(span);
             }else if(part.removed){
-                const color = 'red';
+                color = 'red';
                 span = document.createElement('del');
-                span.style.color = color;
-                span.appendChild(document
-                    .createTextNode(part.value));
-                fragment.appendChild(span);
             }else {
-                const color = '#172b4d'
+                color = '#172b4d'
                 span = document.createElement('span');
-                span.style.color = color;
-                span.appendChild(document
-                    .createTextNode(part.value));
-                fragment.appendChild(span);
             }
+            span.style.color = color;
+            span.appendChild(document
+                .createTextNode(part.value));
+            fragment.appendChild(span);
         });
         display.appendChild(fragment);
     })
