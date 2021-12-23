@@ -11,15 +11,16 @@
 </body>
 <script>
     getDiffDesc();
-    function getDiffDesc(){
+
+    function getDiffDesc() {
         let diffStr = "";
-        console.log(diffDesc);
+        console.log('diffDesc: ', diffDesc);
         for (let i = 0; i < diffDesc.length; i++) {
             diffStr += '<div>' + diffDesc[i].value + '</div>';
-            console.log('diffDesc: ', diffStr);
+            console.log('diffStr in foreach: ', diffStr);
         }
-        console.log(diffStr);
-        console.log(typeof diffStr);
+        console.log('diffStr after foreach: ', diffStr);
+        console.log('type of diffStr: ', typeof diffStr);
         document.getElementById("diffDesc").innerHTML = '一个字符串';
     }
 </script>

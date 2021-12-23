@@ -63,14 +63,11 @@ showRequirementChangeCount = function (requirementChangeCount) {
 window.onDiffBtnClick = function (){
     console.log('new page');
     return t.modal({
-        // the url to load for the iframe
         url: './lastDescDiff.html',
-        // optional arguments to be passed to the iframe as query parameters
-        // access later with t.arg('text')
         args: { text: 'Hello' },
-        // initial height for iframe
-        height: 200, // not used if fullscreen is true
-        // whether the modal should stretch to take up the whole screen
+        // optional color for header chrome
+        // accentColor: '#ebecf0',
+        height: 500, // not used if fullscreen is true
         fullscreen: false,
         // optional function to be called if user closes modal (via `X` or escape, etc)
         callback: () => console.log('Goodbye.'),
