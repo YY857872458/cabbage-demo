@@ -18,7 +18,7 @@ function getSavedDateTime() {
     const map = {
         mm: now.getMonth() + 1,
         dd: now.getDate(),
-        yy: now.getFullYear().toString().slice(-2),
+        // yy: now.getFullYear().toString().slice(-2),
         yyyy: now.getFullYear()
     }
     return 'yyyy/mm/dd'.replace(/mm|dd|yy|yyyy/gi, matched => map[matched])
