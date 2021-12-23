@@ -19,7 +19,7 @@ window.onSaveBtnClick = function () {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        diffDescArray = Diff.diffWords(lastDesc.fulfillmentValue, currentDesc);
+        diffDescArray = Diff.diffChars(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diffDescArray);
         t.set(context.card, 'shared', {
             diff: diffDescArray
