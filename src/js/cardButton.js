@@ -19,29 +19,21 @@ window.onSaveBtnClick = function () {
         console.log('let currentDesc: ', currentDesc);
     });
     t.get(context.card, 'shared', 'originalDesc').then(function (lastDesc) {
-        diffDescArray = Diff.diffLines(lastDesc.fulfillmentValue, currentDesc);
+        diffDescArray = Diff.diffWords(lastDesc.fulfillmentValue, currentDesc);
         console.log('diff：', diffDescArray);
-        // diff.forEach((part) => {
-        //     // green for additions, red for deletions
-        //     // grey for common parts
-        //     const color = part.added ? 'green' :
-        //         part.removed ? 'red' : 'grey';
-        //     process.stderr.write(part.value[color]);
-        // });
-        // console.log();
         t.set(context.card, 'shared', {
             diff: diffDescArray
         })
-        if (currentDesc !== lastDesc) {
-            t.set(context.card, 'shared', {
-                changedDesc: currentDesc,
-            }).then(function () {
-                t.get(context.card, 'shared', 'changedDesc')
-                    .then(res => console.log('afterChanged desc: \n', res));
-                t.get(context.card, 'shared', 'originalDesc')
-                    .then(res => console.log('previous desc: \n', res))
-            })
-        }
+        // if (currentDesc !== lastDesc) {
+        //     t.set(context.card, 'shared', {
+        //         changedDesc: currentDesc,
+        //     }).then(function () {
+        //         t.get(context.card, 'shared', 'changedDesc')
+        //             .then(res => console.log('afterChanged desc: \n', res));
+        t.get(context.card, 'shared', 'originalDesc')
+            .then(res => console.log('previous desc: \n', res))
+        //     })
+        // }
     })
     t.set(context.card, 'shared', {requirementChangeCount})
         .then(() => {
