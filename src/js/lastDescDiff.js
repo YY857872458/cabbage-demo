@@ -18,6 +18,6 @@ t.get(context.card, 'shared', 'diff').then(function (diff) {
     }
     console.log('5. diffStr after foreach: ', diffStr);
     console.log('6. type of diffStr: ', typeof diffStr);
-    document.getElementById("diffDesc").innerHTML = '一个字符串';
+    document.getElementById("diffDesc").innerHTML = diffStr;
 })
 // }
