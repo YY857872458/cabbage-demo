@@ -6,14 +6,13 @@
 </head>
 <body>
 <div class="container">
-    <div id="requirementChangeCount"></div>
+    <div id="requirementChangeCount">Total Changes:</div>
     <div class="button-container">
-        <button class="button" onclick="onRecordBtnClick()">Record</button>
-        <button class="button" onclick="onSaveBtnClick()">Save</button>
+        <button class="button left" onclick="onRecordBtnClick()">Record</button>
+        <button class="button right" onclick="onSaveBtnClick()">Save</button>
     </div>
-    <button onclick="onDiffBtnClick()">version record</button>
 </div>
-<pre id="display"></pre>
+
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <script src="../js/cardButton.js"></script>
 </body>

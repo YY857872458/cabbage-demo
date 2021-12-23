@@ -11,13 +11,16 @@
 </body>
 <script>
     getDiffDesc();
-    function getDiffDesc() {
-        let diffStr = "一个字符串";
-        // for (let i = 0; i < diffDesc.length; i++) {
-        //     diffStr += '<div>' + diffDesc[i].value + '</div>';
-        //     console.log('diffDesc: ', diffStr);
-        // }
-        document.getElementById("diffDesc").innerHTML = diffStr;
+    function getDiffDesc(){
+        let diffStr = "";
+        console.log(diffDesc);
+        for (let i = 0; i < diffDesc.length; i++) {
+            diffStr += '<div>' + diffDesc[i].value + '</div>';
+            console.log('diffDesc: ', diffStr);
+        }
+        console.log(diffStr);
+        console.log(typeof diffStr);
+        document.getElementById("diffDesc").innerHTML = '一个字符串';
     }
 </script>
 </html>

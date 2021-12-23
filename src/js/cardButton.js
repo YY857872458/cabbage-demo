@@ -49,7 +49,7 @@ window.onSaveBtnClick = function () {
             });
 }
 
-window.showRequirementChangeCount = function (requirementChangeCount) {
+showRequirementChangeCount = function (requirementChangeCount) {
     let element = document.getElementById('requirementChangeCount');
     element.innerHTML = requirementChangeCount;
 }
@@ -60,8 +60,6 @@ window.showLastDescDiff = function () {
     }];
 };
 
-
-
 window.onDiffBtnClick = function (){
     console.log('new page');
     return t.modal({
@@ -71,31 +69,13 @@ window.onDiffBtnClick = function (){
         // access later with t.arg('text')
         args: { text: 'Hello' },
         // initial height for iframe
-        height: 500, // not used if fullscreen is true
+        height: 200, // not used if fullscreen is true
         // whether the modal should stretch to take up the whole screen
         fullscreen: false,
         // optional function to be called if user closes modal (via `X` or escape, etc)
         callback: () => console.log('Goodbye.'),
         // optional title for header chrome
-        title: 'Diff Description',
+        title: 'Diff Description'
         // optional action buttons for header chrome
-        // max 3, up to 1 on right side
-        actions: [{
-            url: 'https://google.com',
-            alt: 'Leftmost',
-            position: 'left',
-        }, {
-            callback: (tr) => tr.popup({
-                title: tr.localizeKey('appear_in_settings'),
-                url: 'settings.html',
-                height: 164,
-            }),
-            alt: 'Second from left',
-            position: 'left',
-        }, {
-            callback: () => console.log(':tada:'),
-            alt: 'Right side',
-            position: 'right',
-        }],
     })
 }
