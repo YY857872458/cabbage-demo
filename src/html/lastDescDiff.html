@@ -14,13 +14,16 @@
 
     function getDiffDesc() {
         let diffStr = "";
-        console.log('diffDesc: ', diffDesc);
+        console.log('1. diffDesc: ', diffDesc);
+        console.log('2. diffDesc typeof: ', typeof diffDesc);
+        console.log('3. diffDesc.length: ', diffDesc.length);
+        console.log('3.5. diffDesc.length typeof: ', typeof diffDesc.length);
         for (let i = 0; i < diffDesc.length; i++) {
             diffStr += '<div>' + diffDesc[i].value + '</div>';
-            console.log('diffStr in foreach: ', diffStr);
+            console.log('4. diffStr in foreach: ', diffStr);
         }
-        console.log('diffStr after foreach: ', diffStr);
-        console.log('type of diffStr: ', typeof diffStr);
+        console.log('5. diffStr after foreach: ', diffStr);
+        console.log('6. type of diffStr: ', typeof diffStr);
         document.getElementById("diffDesc").innerHTML = '一个字符串';
     }
 </script>
