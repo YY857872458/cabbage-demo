@@ -152,6 +152,7 @@ window.onSaveBtnClick = function onSaveBtnClick() {
                 showRequirementChangeCount(`Total Changes: ${requirementChangeCount}` + '(failed to save!)');
             });
 
+    t.set("card",'shared',{})
     t.card('id', 'desc').then(res => {
         console.log('id', res);
         info.cardId = res.id;

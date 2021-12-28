@@ -20,14 +20,19 @@ const onCardBtnClick = function (t) {
 let inDevListId;
 const getCardButtons = function (t) {
     const context = t.getContext();
-    t.card('id', 'desc').then(res => {
-        console.log('t.card: ', res);
-        info.cardId = res.id;
-        info.descriptions = res.desc;
-        info.version = `v0.0`;
-        info.createdTime = new Date(Date.now());
-        axios.post("http://localhost:8086/description", info).then(() => console.log("已存初始版本0.0"))
-    });
+    t.get(context.card,'shared','requirementChangeCount').then(function (res) {
+        if(res === 0){
+            t.card('id', 'desc').then(res => {
+                console.log('t.card: ', res);
+                info.cardId = res.id;
+                info.descriptions = res.desc;
+                info.version = `v0.0`;
+                info.createdTime = new Date(Date.now());
+                axios.post("http://localhost:8086/description", info).then(() => console.log("已存初始版本0.0"))
+            });
+        }
+    })
+
     t.lists('id', 'name').then(function (lists) {
         lists.forEach(function (list) {
             if (list.name === 'IN DEV') {
