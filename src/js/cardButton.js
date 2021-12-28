@@ -157,7 +157,7 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.cardId = res.id;
         info.descriptions = res.desc;
         info.version = `v${requirementChangeCount}.0`;
-        info.createdTime = Date.now();
+        info.createdTime = new Date(Date.now());
         console.log('info.createdTime: ',info.createdTime)
         console.log('typeof info.createdTime: ',typeof info.createdTime)
         axios.post("http://localhost:8086/description", info).then(res => {
