@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const Diff = require('diff');
 const t = window.TrelloPowerUp.iframe();
 
@@ -15,7 +16,7 @@ let info = {
     cardId: '',
     descriptions: '',
     version: '',
-    createdTime:''
+    createdTime: ''
 }
 
 const addBtnForVersionRecord = (list, versionRecord, curPage) => {
@@ -25,19 +26,21 @@ const addBtnForVersionRecord = (list, versionRecord, curPage) => {
     versionRecord.id = "versionRecord";
 
     for (let i = list.data.length - 1 - curPage * 5; i >= list.data.length - curPage * 5 - 5 && i >= 0; i--) {
-        if(list.data[i].version !== 'v0.0') {
+        if (list.data[i].version !== 'v0.0') {
             const button = document.createElement("button");
             button.textContent = list.data[i].version;
-            button.addEventListener('click', function () {onVersionBtnCLick(button.textContent)});
+            button.addEventListener('click', function () {
+                onVersionBtnCLick(button.textContent)
+            });
             versionRecord.appendChild(button);
         }
     }
 
-    if(list.data.length > 5 || curPage !== 0) {
+    if (list.data.length > 5 || curPage !== 0) {
         const prevPage = document.createElement("button");
         prevPage.textContent = "<";
-        prevPage.onclick = function() {
-            if(curPage > 0) {
+        prevPage.onclick = function () {
+            if (curPage > 0) {
                 curPage = curPage - 1;
                 addBtnForVersionRecord(list, versionRecord, curPage);
             }
@@ -46,9 +49,8 @@ const addBtnForVersionRecord = (list, versionRecord, curPage) => {
 
         const nextPage = document.createElement("button");
         nextPage.textContent = ">";
-        nextPage.onclick = function() {
-            if(curPage <= list.data.length / 5)
-            {
+        nextPage.onclick = function () {
+            if (curPage <= list.data.length / 5) {
                 curPage = curPage + 1;
                 addBtnForVersionRecord(list, versionRecord, curPage);
             }
@@ -59,16 +61,10 @@ const addBtnForVersionRecord = (list, versionRecord, curPage) => {
 
 function onVersionBtnCLick(text) {
     console.log("0.text: ", text);
-    // const savedDateTime = getSavedDateTime();
     axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
-        console.log('length of list', list.data.length);
-
         const versionNum = parseInt(text.substring(1));
         const lastVersionNum = versionNum - 1;
         const lastVersionText = `v${lastVersionNum}.0`;
-        console.log("2.lastVersionNum: ", lastVersionNum);
-        console.log("3.lastVersionText: ", lastVersionText);
-
         let currentData;
         let oldData;
         list.data.forEach(item => {
@@ -79,18 +75,21 @@ function onVersionBtnCLick(text) {
                 oldData = item;
             }
         });
-        console.log("4.currentData: ", currentData);
-        console.log("5.oldData: ", oldData);
 
         const diff = Diff.diffChars(oldData.descriptions, currentData.descriptions);
-        console.log("6.versionDiff: ", diff);
-
-        // t.set(context.card, 'shared', {
-        //             savedTime: savedDateTime
-        //         }).then(() => console.log('7.set diff version'));
+        let savedTime = currentData.createdTime;
+        console.log("currentData.createTime: -> ", savedTime);
+        console.log("typeof currentData.createTime: -> ", typeof savedTime);
+        let formattedTime = 'yyyy/mm/dd'.replace('mm', savedTime.getMonth() + 1)
+            .replace('yyyy', savedTime.getFullYear())
+            .replace('dd', savedTime.getDate());
+        console.log("formattedTime:-> ", formattedTime);
         return t.modal({
             url: './versionComparisons.html',
-            args: {text: diff},
+            args: {
+                text: diff,
+                savedTime: savedTime
+            },
             height: 500,
             fullscreen: false,
             title: 'Description Comparison'
@@ -152,7 +151,7 @@ window.onSaveBtnClick = function onSaveBtnClick() {
                 showRequirementChangeCount(`Total Changes: ${requirementChangeCount}` + '(failed to save!)');
             });
 
-    t.set("card",'shared',{})
+    t.set("card", 'shared', {})
     t.card('id', 'desc').then(res => {
         console.log('id', res);
         info.cardId = res.id;
@@ -160,7 +159,7 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.version = `v${requirementChangeCount}.0`;
         info.createdTime = new Date(Date.now());
         axios.post("http://localhost:8086/description", info).then(res => {
-            console.log("post return value: ",res)
+            console.log("post return value: ", res)
             axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
                 console.log("save return list============", list.data.length)
                 let versionRecord = document.getElementById("versionRecord");
