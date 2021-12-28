@@ -25,6 +25,7 @@ const getCardButtons = function (t) {
         info.cardId = res.id;
         info.descriptions = res.desc;
         info.version = `v0.0`;
+        info.createdTime = new Date(Date.now());
         axios.post("http://localhost:8086/description", info).then(() => console.log("已存初始版本0.0"))
     });
     t.lists('id', 'name').then(function (lists) {
