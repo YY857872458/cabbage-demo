@@ -20,8 +20,8 @@ const onCardBtnClick = function (t) {
 let inDevListId;
 const getCardButtons = function (t) {
     const context = t.getContext();
-    t.get(context.card,'shared','requirementChangeCount').then(function (res) {
-        if(res === 0){
+    t.get(context.card, 'shared', 'requirementChangeCount', 0).then(function (res) {
+        if (res === 0) {
             t.card('id', 'desc').then(res => {
                 console.log('t.card: ', res);
                 info.cardId = res.id;
