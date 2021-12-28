@@ -16,7 +16,6 @@ let info = {
     cardId: '',
     descriptions: '',
     version: '',
-    createdTime: ''
 }
 
 const addBtnForVersionRecord = (list, versionRecord, curPage) => {
@@ -80,10 +79,7 @@ function onVersionBtnCLick(text) {
         let savedTime = currentData.createdTime;
         console.log("currentData.createTime: -> ", savedTime);
         console.log("typeof currentData.createTime: -> ", typeof savedTime);
-        let formattedTime = 'yyyy/mm/dd'.replace('mm', savedTime.getMonth() + 1)
-            .replace('yyyy', savedTime.getFullYear())
-            .replace('dd', savedTime.getDate());
-        console.log("formattedTime:-> ", formattedTime);
+
         return t.modal({
             url: './versionComparisons.html',
             args: {
@@ -157,7 +153,6 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.cardId = res.id;
         info.descriptions = res.desc;
         info.version = `v${requirementChangeCount}.0`;
-        info.createdTime = new Date(Date.now());
         axios.post("http://localhost:8086/description", info).then(res => {
             console.log("post return value: ", res)
             axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
