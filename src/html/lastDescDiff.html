@@ -6,7 +6,7 @@
 </head>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <body>
-<div class="desc">
+<div id="desc" class="desc">
     <pre id="display" class="content"></pre>
     <div id="date" class="date"></div>
 </div>
@@ -17,6 +17,9 @@
     let span = null;
     t.get(context.card, 'shared', 'diff').then(function (diff) {
         console.log('diff in html', diff);
+        if(diff === '' || diff === undefined || diff === null){
+            document.getElementById("desc").innerHTML = "描述未更改！";
+        }
         const display = document.getElementById('display');
         const fragment = document.createDocumentFragment();
         diff.forEach((part) => {
@@ -40,7 +43,7 @@
     t.get(context.card, 'shared', 'savedTime').then(function (time) {
         console.log('time in html: ', time);
         const date = document.getElementById('date');
-        date.innerHTML = time;
+        date.innerHTML = `最后更改时间：${time}`;
     })
 </script>
 </body>

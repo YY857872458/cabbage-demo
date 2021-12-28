@@ -1,16 +1,30 @@
+import {getBoardButton} from "./getBoardButton";
+import axios from 'axios';
+let info = {
+    cardId: '',
+    descriptions: '',
+    version: ''
+}
 console.log('Hello World!');
+let requirementChangeCount;
 
-
-const onBtnClick = function (t, opts) {
-    console.log('Someone clicked the button');
+const onCardBtnClick = function (t) {
     return t.popup({
-        title: 'Demand Change',
+        title: 'Requirement Change',
         url: './cardButton.html'
     });
 };
+
 let inDevListId;
-const cardButtons = function (t, opts) {
+const getCardButtons = function (t) {
     const context = t.getContext();
+    // t.card('id', 'desc').then(res => {
+    //     console.log('id', res);
+    //     info.cardId = res.id;
+    //     info.descriptions = res.desc;
+    //     info.version = `v0.0`;
+    //     axios.post("http://localhost:8086/description", info).then(() => console.log("已存初始版本0.0"))
+    // });
     t.lists('id', 'name').then(function (lists) {
         lists.forEach(function (list) {
             if (list.name === 'IN DEV') {
@@ -31,50 +45,46 @@ const cardButtons = function (t, opts) {
         }
     })
     return [{
-        text: 'Demand Changes',
-        icon: '🔺',
-        callback: onBtnClick,
-        condition: 'always'
+        text: 'Requirement Change',
+        icon: 'https://uxwing.com/wp-content/themes/uxwing/download/19-e-commerce-currency-shopping/change-exchange.png',
+        callback: onCardBtnClick,
+        condition: 'always',
     }];
+}
+
+const getCardBadges = function (t) {
+    return t.get(t.getContext().card, 'shared', 'requirementChangeCount').then(res => {
+        if (res) {
+            return [{
+                icon: 'https://uxwing.com/wp-content/themes/uxwing/download/19-e-commerce-currency-shopping/change-exchange.png',
+                color: 'red'
+            }]
+        }
+    })
+}
+
+const getCardDetailBadges = function (t) {
+    return t.get(t.getContext().card, 'shared', 'requirementChangeCount')
+        .then(res => {
+            console.log('requirementChangeCount in res: ', res);
+            requirementChangeCount = res ? res : 0;
+            if (requirementChangeCount !== 0) {
+                return [
+                    {
+                        title: "Changes",
+                        text: requirementChangeCount,
+                        color: 'red',
+                    },
+                ];
+            }
+        })
 }
 
 window.TrelloPowerUp.initialize(
     {
-        'card-badges': function (t, opts) {
-            return null;
-        },
-        'card-buttons': cardButtons,
-        'card-detail-badges': function (t, opts) {
-            return t.card('name')
-                .get('name')
-                .then(function () {
-                    return [{
-                        dynamic: function () {
-                            return {
-                                title: 'Changes',
-                                color: 'red',
-                            };
-                        },
-                    }]
-                })
-        },
-        "board-buttons": function (t, opts) {
-            return [{
-                text: 'Callback',
-                callback: onBoardBtn,
-                condition: 'edit'
-            }]
-        }
+        'board-buttons': getBoardButton,
+        'card-buttons': getCardButtons,
+        'card-badges': getCardBadges,
+        "card-detail-badges": getCardDetailBadges,
     }
 );
-const onBoardBtn = function (t, opts) {
-    return t.popup({
-        text: 'Demand Change',
-        title: 'Board Button Callback',
-        url: './boardButton.html'
-    });
-}
-
-
-
-

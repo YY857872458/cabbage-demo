@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles/card-button.css">
+</head>
+<body>
+<div style="display:flex;flex-direction: column; align-items:center;">
+    <h1 style="text-align: center">Requirement Change Statistics</h1>
+    <div style="display:flex; justify-content:center;">
+        <button onclick="startAnalysis()">start analysis</button>
+    </div>
+    <div id="charts" style="width:900px; height: 600px; margin: 40px 0 0 0;">it is for echarts</div>
+    <div id="histogram" style="width:900px; height: 600px; margin: 20px 0 0 0;">it is for echarts</div>
+</div>
+
+<script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
+<script src="../js/requirementChangeAnalysis.js"></script>
+</body>
+</html>
