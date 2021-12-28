@@ -12,11 +12,13 @@
   "devDependencies": {
     "@types/node": "^17.0.2",
     "axios": "^0.24.0",
+    "echarts": "^5.2.2",
     "http-proxy-middleware": "^2.0.1",
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "diff": "^5.0.0"
+    "diff": "^5.0.0",
+    "lodash": "^4.17.21"
   }
 }
