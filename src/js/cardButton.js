@@ -159,6 +159,7 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.version = `v${requirementChangeCount}.0`;
         info.createdTime = new Date(Date.now());
         axios.post("http://localhost:8086/description", info).then(res => {
+            console.log("post return value: ",res)
             axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
                 console.log("save return list============", list.data.length)
                 let versionRecord = document.getElementById("versionRecord");
