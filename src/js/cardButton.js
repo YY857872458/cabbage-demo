@@ -158,8 +158,6 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.descriptions = res.desc;
         info.version = `v${requirementChangeCount}.0`;
         info.createdTime = new Date(Date.now());
-        console.log('info.createdTime: ',info.createdTime)
-        console.log('typeof info.createdTime: ',typeof info.createdTime)
         axios.post("http://localhost:8086/description", info).then(res => {
             axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
                 console.log("save return list============", list.data.length)
