@@ -14,7 +14,8 @@ t.get(context.card, 'shared', 'requirementChangeCount', 0).then(requirementChang
 let info = {
     cardId: '',
     descriptions: '',
-    version: ''
+    version: '',
+    createdTime:''
 }
 
 const addBtnForVersionRecord = (list, versionRecord, curPage) => {
@@ -156,6 +157,9 @@ window.onSaveBtnClick = function onSaveBtnClick() {
         info.cardId = res.id;
         info.descriptions = res.desc;
         info.version = `v${requirementChangeCount}.0`;
+        info.createdTime = Date.now();
+        console.log('info.createdTime: ',info.createdTime)
+        console.log('typeof info.createdTime: ',typeof info.createdTime)
         axios.post("http://localhost:8086/description", info).then(res => {
             axios.get(`http://localhost:8086/description/${context.card}`).then(list => {
                 console.log("save return list============", list.data.length)
