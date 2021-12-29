@@ -70,19 +70,16 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     }
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
-                cardVersionRecordInfo.sort(compare(maxId));
+                cardVersionRecordInfo = arraySort(cardVersionRecordInfo, maxId);
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
         })
     })
 })
 
-function compare(p) {
-    return function (m, n) {
-        var a = m[p];
-        var b = n[p];
-        return b - a;
-    }
+function arraySort(objArr, key) {
+    let result = objArr.slice(0);
+    return result.sort((a, b) => a[key] - b[key]);
 }
 
 window.startAnalysis = function startAnalysis() {
