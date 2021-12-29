@@ -59,7 +59,6 @@ t.cards('id', 'name', 'labels').then(cardList => {
         let versionList = [];
         axios.get(`http://localhost:8086/description/${card.id}`).then(function (res) {
             // console.log("1.res: ", res);
-            console.log("2.res.data: ", res.data);
             if (res.data.length > 1) {
                 res.data.forEach(version => {
                     if (version.id > maxId) {
@@ -69,7 +68,6 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     if (version.version !== "v0.0") {
                         versionList.push(version.version);
                     }
-                    console.log("3.versionList: ", versionList);
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, lastTime, versionList}];
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
@@ -236,11 +234,11 @@ window.calculateRequirementChangeCountAndCardCountAsSource = function calculateR
 
 window.clickChangedCardBtn = function clickChangedCardBtn() {
     console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
+
     return t.modal({
         url: './boardBtnVersionRecord.html',
         args: {
-            // text: diff,
-            // savedTime: savedTime
+            cardsVersionRecordInfo: cardVersionRecordInfo,
         },
         height: 500,
         fullscreen: false,

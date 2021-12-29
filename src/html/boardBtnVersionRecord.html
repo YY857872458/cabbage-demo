@@ -6,7 +6,7 @@
 </head>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <body>
-<table class="table" border="1">
+<table class="table" id="table" border="1">
     <caption>Story List</caption>
     <tr>
         <th>Label</th>
@@ -28,38 +28,46 @@
     </tr>
 </table>
 <script>
-    let color = '';
+    // let color = '';
     const t = window.TrelloPowerUp.iframe();
     const context = t.getContext();
-    let span = null;
+    let tr = null;
+    let labelTd = null;
+    let titleTd = null;
+    let lastTimeTd = null;
+    let versionRecordTd = null;
 
-    const diff = t.arg('text');
-    const time = t.arg('savedTime');
-    if(diff === '' || diff === undefined || diff === null){
-        document.getElementById("display").innerHTML = "描述未更改！";
-    }
+    const cardsVersionRecordInfo = t.arg('cardsVersionRecordInfo');
+    console.log("cardsVersionRecordInfo in html: ", cardsVersionRecordInfo);
 
-    const display = document.getElementById('display');
+    const table = document.getElementById('table');
     const fragment = document.createDocumentFragment();
-    diff.forEach((part) => {
-        if (part.added) {
-            color = 'green';
-            span = document.createElement('ins');
-        } else if (part.removed) {
-            color = 'red';
-            span = document.createElement('del');
-        } else {
-            color = '#172b4d'
-            span = document.createElement('span');
-        }
-        span.style.color = color;
-        span.appendChild(document
-            .createTextNode(part.value));
-        fragment.appendChild(span);
-    });
-    display.appendChild(fragment);
 
-    document.getElementById('date').innerHTML = `最后更改时间：${time}`;
+    cardsVersionRecordInfo.forEach((card) => {
+        tr = document.createElement('tr');
+        card.labels.filter(label => label.name !== '');
+        console.log('card labels after filter: ', card.labels);
+
+        labelTd = document.createElement('td');
+        labelTd.appendChild(document.createTextNode(card.labels));
+        tr.appendChild(labelTd);
+
+        titleTd = document.createElement('td');
+        titleTd.appendChild(document.createTextNode(card.name));
+        tr.appendChild(titleTd);
+
+        lastTimeTd = document.createElement('td');
+        lastTimeTd.appendChild(document.createTextNode(card.lastTime));
+        tr.appendChild(lastTimeTd);
+
+        versionRecordTd = document.createElement('td');
+        versionRecordTd.appendChild(document.createTextNode(card.versionList));
+        tr.appendChild(versionRecordTd);
+
+        fragment.appendChild(tr);
+    });
+    table.appendChild(fragment);
+
 </script>
 </body>
 </html>
