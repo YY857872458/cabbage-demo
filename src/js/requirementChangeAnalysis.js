@@ -221,10 +221,26 @@ import axios from 'axios';
 
 t.cards('id', 'name', 'labels').then(cardList => {
     console.log("0.cardlist: ", cardList);
+    let cardVersionRecordInfo = [];
     cardList.forEach(card => {
+        let maxId = 0;
+        let lastTime = '';
+        let versionList = [];
         axios.get(`http://localhost:8086/description/${card.id}`).then(function (res) {
-            console.log("1.res: ", res);
+            // console.log("1.res: ", res);
             console.log("2.res.data: ", res.data);
+            if (res.data.length !== 0) {
+                res.data.forEach(version => {
+                    if (version.id > maxId) {
+                        maxId = version.id;
+                        lastTime = version.createdTime;
+                    }
+                    versionList.push(version.version);
+                    console.log("3.versionList: ", versionList);
+                })
+                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
+                console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
+            }
         })
     })
 })
