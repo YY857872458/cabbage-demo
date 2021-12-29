@@ -60,7 +60,7 @@ t.cards('id', 'name', 'labels').then(cardList => {
         axios.get(`http://localhost:8086/description/${card.id}`).then(function (res) {
             // console.log("1.res: ", res);
             console.log("2.res.data: ", res.data);
-            if (res.data.length !== 0) {
+            if (res.data.length > 1) {
                 res.data.forEach(version => {
                     if (version.id > maxId) {
                         maxId = version.id;
@@ -69,11 +69,13 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     versionList.push(version.version);
                     console.log("3.versionList: ", versionList);
                 })
-                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
+                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, lastTime, versionList}];
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
+            console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
+        }).then(() => {
+            console.log("6.cardVersionRecordInfo: ", cardVersionRecordInfo);
         })
-        console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
     })
 })
 
