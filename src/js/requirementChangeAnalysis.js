@@ -75,9 +75,7 @@ t.cards('id', 'name', 'labels').then(cardList => {
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
         })
-
     })
-    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
 })
 
 window.startAnalysis = function startAnalysis() {
@@ -237,6 +235,7 @@ window.calculateRequirementChangeCountAndCardCountAsSource = function calculateR
 }
 
 window.clickChangedCardBtn = function clickChangedCardBtn() {
+    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
     return t.modal({
         url: './boardBtnVersionRecord.html',
         args: {
