@@ -72,7 +72,6 @@ const getCardBadges = function (t) {
 const getCardDetailBadges = function (t) {
     return t.get(t.getContext().card, 'shared', 'requirementChangeCount')
         .then(res => {
-            console.log('requirementChangeCount in res: ', res);
             requirementChangeCount = res ? res : 0;
             if (requirementChangeCount !== 0) {
                 return [

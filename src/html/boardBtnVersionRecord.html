@@ -7,25 +7,13 @@
 </head>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <body>
-<table class="table" id="table" border="1">
+<table class="table" id="table">
     <caption>Story List</caption>
     <tr>
         <th>Label</th>
         <th>Title</th>
         <th>Last Time</th>
         <th>Version Record</th>
-    </tr>
-    <tr>
-        <td>January</td>
-        <td>$100</td>
-        <td>$100</td>
-        <td>$100</td>
-    </tr>
-    <tr>
-        <td>February</td>
-        <td>$50</td>
-        <td>$50</td>
-        <td>$50</td>
     </tr>
 </table>
 <script>
@@ -46,11 +34,14 @@
 
     cardsVersionRecordInfo.forEach((card) => {
         tr = document.createElement('tr');
-        card.labels.filter(label => label.name !== '');
-        console.log('card labels after filter: ', card.labels);
+        let labelSet = card.labels.filter(label => label.name !== '');
+        console.log('card labels after filter: ', labelSet);
+        let labelNameSet = [];
+        labelSet.forEach(label => labelNameSet.push(label.name));
+        console.log('card labels after filter: ', labelNameSet);
 
         labelTd = document.createElement('td');
-        labelTd.appendChild(document.createTextNode(card.labels));
+        labelTd.appendChild(document.createTextNode(labelNameSet));
         tr.appendChild(labelTd);
 
         titleTd = document.createElement('td');
