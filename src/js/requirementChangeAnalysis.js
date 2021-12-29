@@ -52,8 +52,8 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
 
 t.cards('id', 'name', 'labels').then(cardList => {
     console.log("0.cardlist: ", cardList);
-    let cardVersionRecordInfo = [];
     cardList.forEach(card => {
+        let cardVersionRecordInfo = [];
         let maxId = 0;
         let lastTime = '';
         let versionList = [];
@@ -66,7 +66,7 @@ t.cards('id', 'name', 'labels').then(cardList => {
                         maxId = version.id;
                         lastTime = version.createdTime;
                     }
-                    versionList.push(version.version);
+                    versionList = version.version === "v0.0" ? versionList : versionList.push(version.version);
                     console.log("3.versionList: ", versionList);
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, lastTime, versionList}];
