@@ -69,12 +69,21 @@ t.cards('id', 'name', 'labels').then(cardList => {
                         versionList.push(version.version);
                     }
                 })
-                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, lastTime, versionList}];
+                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
+                cardVersionRecordInfo.sort(compare(maxId));
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
         })
     })
 })
+
+function compare(p) {
+    return function (m, n) {
+        var a = m[p];
+        var b = n[p];
+        return b - a;
+    }
+}
 
 window.startAnalysis = function startAnalysis() {
     drawPieChart();
