@@ -40,23 +40,21 @@ t.board('labels').then(res => {
 });
 t.cards('id', 'labels', 'name', 'dateLastActivity')
     .then(cards => {
-        console.log('cards: ', cards);
         cards.forEach(cardInfo => {
             t.get(cardInfo.id, 'shared', 'requirementChangeCount')
                 .then(requirementChangeCount => {
-                    console.log('requirementChangeCount: ', requirementChangeCount);
                     cardsInfo = [...cardsInfo, {...cardInfo, requirementChangeCount}];
                 })
         });
         console.log('cardsInfo: ', cardsInfo);
     });
 
-startAnalysis = () => {
+window.startAnalysis = function startAnalysis() {
     drawPieChart();
     drawHistogram();
 }
 
-drawHistogram = () => {
+window.drawHistogram = function drawHistogram() {
     const _ = require('lodash');
     const moment = require('moment');
     let source = [];
@@ -75,9 +73,6 @@ drawHistogram = () => {
             const singleCount = _.get(singleCard, 'requirementChangeCount', 0);
             changeCount += singleCount;
         });
-        console.log('twoWeeksStart: ', twoWeeksStart);
-        console.log('twoWeeksEnd: ', twoWeeksEnd);
-        console.log('cardCount and changeCount: ', cardCount, changeCount);
         source = [...source, [`${twoWeeksStart.format('MM/DD')} ~ ${twoWeeksEnd.format('MM/DD')}`, cardCount, changeCount]];
     }
     const legend = ['cycle', 'cards count', 'changes count'];
@@ -86,7 +81,7 @@ drawHistogram = () => {
     myHistogram.setOption(histogramOption);
 }
 
-generateHistogramOption = source => {
+window.generateHistogramOption = function generateHistogramOption(source) {
     const _ = require('lodash');
     const labels = _.drop(source).map(data => data[0]);
     const histogramOption = {
@@ -128,11 +123,10 @@ generateHistogramOption = source => {
         series: [{type: 'bar'}, {type: 'bar'}]
     };
     histogramOption.dataset.source = source;
-    console.log('source: ', source);
     return histogramOption;
 }
 
-drawPieChart = () => {
+window.drawPieChart = function drawPieChart() {
     const _ = require('lodash');
     _.forEach(labelSet, label => {
         const list = _.filter(cardsInfo, cardInfo => {
@@ -145,7 +139,7 @@ drawPieChart = () => {
     myChart.setOption(option);
 }
 
-generatePieChartOption = data => {
+window.generatePieChartOption = function generatePieChartOption(data) {
     const pieChartOption = {
         title: {
             text: 'Total Number of Requirement Changes by Labels',
@@ -197,7 +191,7 @@ generatePieChartOption = data => {
     return pieChartOption;
 }
 
-calculateRequirementChangeCountAndCardCountAsSource = dataSet => {
+window.calculateRequirementChangeCountAndCardCountAsSource = function calculateRequirementChangeCountAndCardCountAsSource(dataSet) {
     const _ = require('lodash');
     let data = [];
     _.forEach(dataSet, (value, key) => {
@@ -223,3 +217,14 @@ window.clickChangedCardBtn = function clickChangedCardBtn() {
         title: 'Description Comparison'
     })
 }
+import axios from 'axios';
+
+t.cards('id', 'name', 'labels').then(cardList => {
+    console.log("0.cardlist: ", cardList);
+    cardList.forEach(card => {
+        axios.get(`http://localhost:8086/description/${card.id}`).then(function (res) {
+            console.log("1.res: ", res);
+            console.log("2.res.data: ", res.data);
+        })
+    })
+})
