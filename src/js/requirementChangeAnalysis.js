@@ -44,7 +44,7 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
         cards.forEach(cardInfo => {
             t.get(cardInfo.id, 'shared', 'requirementChangeCount')
                 .then(requirementChangeCount => {
-                    console.log('requirementChangeCount: ',requirementChangeCount);
+                    console.log('requirementChangeCount: ', requirementChangeCount);
                     cardsInfo = [...cardsInfo, {...cardInfo, requirementChangeCount}];
                 })
         });
@@ -209,4 +209,17 @@ calculateRequirementChangeCountAndCardCountAsSource = dataSet => {
         data = [...data, {name: key, value: changeCount}];
     })
     return data;
+}
+
+window.clickChangedCardBtn = function clickChangedCardBtn() {
+    return t.modal({
+        url: './boardBtnVersionRecord.html',
+        args: {
+            // text: diff,
+            // savedTime: savedTime
+        },
+        height: 500,
+        fullscreen: false,
+        title: 'Description Comparison'
+    })
 }
