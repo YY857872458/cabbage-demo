@@ -50,10 +50,10 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
         console.log('cardsInfo: ', cardsInfo);
     });
 
+let cardVersionRecordInfo = [];
 t.cards('id', 'name', 'labels').then(cardList => {
     console.log("0.cardlist: ", cardList);
     cardList.forEach(card => {
-        let cardVersionRecordInfo = [];
         let maxId = 0;
         let lastTime = '';
         let versionList = [];
@@ -66,17 +66,18 @@ t.cards('id', 'name', 'labels').then(cardList => {
                         maxId = version.id;
                         lastTime = version.createdTime;
                     }
-                    versionList = version.version === "v0.0" ? versionList : versionList.push(version.version);
+                    if (version.version !== "v0.0") {
+                        versionList.push(version.version);
+                    }
                     console.log("3.versionList: ", versionList);
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, lastTime, versionList}];
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
-            console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
-        }).then(() => {
-            console.log("6.cardVersionRecordInfo: ", cardVersionRecordInfo);
         })
+
     })
+    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
 })
 
 window.startAnalysis = function startAnalysis() {
