@@ -74,6 +74,9 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     return a.maxId > b.maxId ? -1 : 1;
                 })
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
+                t.set("board", "shared", {cardVersionRecordInfo}).then(function () {
+                    t.get("board", "shared", "cardVersionRecordInfo").then(res => console.log("4.5 set get: ", res))
+                })
             }
         })
     })
@@ -235,18 +238,15 @@ window.calculateRequirementChangeCountAndCardCountAsSource = function calculateR
     return data;
 }
 
-window.clickChangedCardBtn = function clickChangedCardBtn() {
-    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
-    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
-
-    return t.modal({
-        url: './boardBtnVersionRecord.html',
-        args: {
-            cardsVersionRecordInfo: cardVersionRecordInfo,
-        },
-        height: 500,
-        fullscreen: false,
-        title: 'Description Comparison'
-    })
-}
+// window.clickChangedCardBtn = function clickChangedCardBtn() {
+//     return t.modal({
+//         url: './boardBtnVersionRecord.html',
+//         args: {
+//             cardsVersionRecordInfo: cardVersionRecordInfo,
+//         },
+//         height: 500,
+//         fullscreen: false,
+//         title: 'Description Comparison'
+//     })
+// }
 
