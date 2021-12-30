@@ -44,7 +44,7 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
         //     fullscreen: false,
         //     title: 'Description Comparison'
         // })
-        window.open("newPage.html","","width=200,height=200");
+        window.open("boardComparison.html",'Description Comparison','height=400,width=400,top=100,left=100,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         // return t.popup({
         //     title: 'Description Comparison',
         //     url: './boardComparison.html',
