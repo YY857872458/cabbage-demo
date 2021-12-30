@@ -50,37 +50,6 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
         console.log('cardsInfo: ', cardsInfo);
     });
 
-let cardVersionRecordInfo = [];
-t.cards('id', 'name', 'labels').then(cardList => {
-    console.log("0.cardlist: ", cardList);
-    cardList.forEach(card => {
-        let maxId = 0;
-        let lastTime = '';
-        let versionList = [];
-        axios.get(`http://localhost:8086/description/${card.id}`).then(function (res) {
-            // console.log("1.res: ", res);
-            if (res.data.length > 1) {
-                res.data.forEach(version => {
-                    if (version.id > maxId) {
-                        maxId = version.id;
-                        lastTime = version.createdTime;
-                    }
-                    if (version.version !== "v0.0") {
-                        versionList.push(version.version);
-                    }
-                })
-                cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
-                cardVersionRecordInfo = cardVersionRecordInfo.sort(function (a, b) {
-                    return a.maxId > b.maxId ? -1 : 1;
-                })
-                console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
-                // t.set("board", "shared", {cardVersionRecordInfo}).then(function () {
-                //     t.get("board", "shared", "cardVersionRecordInfo").then(res => console.log("4.5 set get: ", res))
-                // })
-            }
-        })
-    })
-})
 
 window.startAnalysis = function startAnalysis() {
     drawPieChart();
@@ -250,60 +219,60 @@ window.tryLink = function tryLink() {
     })
 }
 
-window.clickChangedCardBtn = function clickChangedCardBtn() {
-    let tr = null;
-    let labelTd = null;
-    let titleTd = null;
-    let lastTimeTd = null;
-    let versionRecordTd = null;
-
-    // const cardsVersionRecordInfo = t.arg('cardsVersionRecordInfo');
-    // t.get("board", "shared", "cardsVersionRecordInfo").then(function (res) {
-    //     console.log("res in html: ", res);
-    //     cardsVersionRecordInfo = res;
-    //     console.log("cardsVersionRecordInfo in html in get: ", cardsVersionRecordInfo);
-    // });
-    console.log("cardsVersionRecordInfo in method: ", cardVersionRecordInfo);
-
-    const table = document.getElementById('table');
-    const fragment = document.createDocumentFragment();
-
-    var name = document.createElement('caption').appendChild(document.createTextNode('Story List'));
-    var headTr = document.createElement('tr');
-    headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Label')));
-    headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Title')));
-    headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Last Time')));
-    headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Version Record')));
-    fragment.appendChild(name);
-    fragment.appendChild(headTr);
-
-    cardVersionRecordInfo.forEach((card) => {
-        tr = document.createElement('tr');
-        let labelSet = card.labels.filter(label => label.name !== '');
-        console.log('card labels after filter: ', labelSet);
-        let labelNameSet = [];
-        labelSet.forEach(label => labelNameSet.push(label.name));
-        console.log('card labels after filter: ', labelNameSet);
-
-        labelTd = document.createElement('td');
-        labelTd.appendChild(document.createTextNode(labelNameSet));
-        tr.appendChild(labelTd);
-
-        titleTd = document.createElement('td');
-        titleTd.appendChild(document.createTextNode(card.name));
-        tr.appendChild(titleTd);
-
-        lastTimeTd = document.createElement('td');
-        lastTimeTd.appendChild(document.createTextNode(card.lastTime));
-        tr.appendChild(lastTimeTd);
-
-        versionRecordTd = document.createElement('td');
-        versionRecordTd.appendChild(document.createTextNode(card.versionList));
-        tr.appendChild(versionRecordTd);
-
-        fragment.appendChild(tr);
-    });
-    table.appendChild(fragment);
-}
+// window.clickChangedCardBtn = function clickChangedCardBtn() {
+//     let tr = null;
+//     let labelTd = null;
+//     let titleTd = null;
+//     let lastTimeTd = null;
+//     let versionRecordTd = null;
+//
+//     // const cardsVersionRecordInfo = t.arg('cardsVersionRecordInfo');
+//     // t.get("board", "shared", "cardsVersionRecordInfo").then(function (res) {
+//     //     console.log("res in html: ", res);
+//     //     cardsVersionRecordInfo = res;
+//     //     console.log("cardsVersionRecordInfo in html in get: ", cardsVersionRecordInfo);
+//     // });
+//     console.log("cardsVersionRecordInfo in method: ", cardVersionRecordInfo);
+//
+//     const table = document.getElementById('table');
+//     const fragment = document.createDocumentFragment();
+//
+//     var name = document.createElement('caption').appendChild(document.createTextNode('Story List'));
+//     var headTr = document.createElement('tr');
+//     headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Label')));
+//     headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Title')));
+//     headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Last Time')));
+//     headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Version Record')));
+//     fragment.appendChild(name);
+//     fragment.appendChild(headTr);
+//
+//     cardVersionRecordInfo.forEach((card) => {
+//         tr = document.createElement('tr');
+//         let labelSet = card.labels.filter(label => label.name !== '');
+//         console.log('card labels after filter: ', labelSet);
+//         let labelNameSet = [];
+//         labelSet.forEach(label => labelNameSet.push(label.name));
+//         console.log('card labels after filter: ', labelNameSet);
+//
+//         labelTd = document.createElement('td');
+//         labelTd.appendChild(document.createTextNode(labelNameSet));
+//         tr.appendChild(labelTd);
+//
+//         titleTd = document.createElement('td');
+//         titleTd.appendChild(document.createTextNode(card.name));
+//         tr.appendChild(titleTd);
+//
+//         lastTimeTd = document.createElement('td');
+//         lastTimeTd.appendChild(document.createTextNode(card.lastTime));
+//         tr.appendChild(lastTimeTd);
+//
+//         versionRecordTd = document.createElement('td');
+//         versionRecordTd.appendChild(document.createTextNode(card.versionList));
+//         tr.appendChild(versionRecordTd);
+//
+//         fragment.appendChild(tr);
+//     });
+//     table.appendChild(fragment);
+// }
 
 
