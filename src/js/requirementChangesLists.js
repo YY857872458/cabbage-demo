@@ -29,20 +29,28 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
         })
 
         // window.open('./boardComparison.html')
-        return t.modal({
+        // return t.modal({
+        //     url: './boardComparison.html',
+        //     args: {
+        //         text: diff,
+        //         savedTime: savedTime
+        //     },
+        //     callback: function () {
+        //         return t.popup({
+        //             url:'newPage.html',
+        //         })
+        //     },
+        //     height: 500,
+        //     fullscreen: false,
+        //     title: 'Description Comparison'
+        // })
+        return t.popup({
+            title: 'Description Comparison',
             url: './boardComparison.html',
             args: {
                 text: diff,
                 savedTime: savedTime
-            },
-            callback: function () {
-                return t.modal({
-                    url:'newPage.html',
-                })
-            },
-            height: 500,
-            fullscreen: false,
-            title: 'Description Comparison'
+            }
         })
     });
 }
