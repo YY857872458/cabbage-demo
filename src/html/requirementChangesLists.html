@@ -70,13 +70,13 @@
         let span = null;
         card.versionList.forEach(versionText => {
             span = document.createElement('span');
-            span.setAttribute("onclick", "onVersionBoardBtnCLick(versionText,card.id)");
-            // span.onclick = onVersionBoardBtnCLick(versionText,card.id);
+            // span.setAttribute("onclick", "onVersionBoardBtnCLick(versionText,card.id)");
+            span.onclick = () => onVersionBoardBtnCLick(versionText, card.id);
             // span.addEventListener('click', onVersionBoardBtnCLick(versionText,card.id))
-            span.appendChild(document.createTextNode(versionText));
+            span.appendChild(document.createTextNode(`${versionText};`));
             versionRecordTd.appendChild(document.createTextNode(versionText));
         })
-        versionRecordTd.appendChild(document.createTextNode(card.versionList));
+        // versionRecordTd.appendChild(document.createTextNode(card.versionList));
         tr.appendChild(versionRecordTd);
 
         fragment.appendChild(tr);
