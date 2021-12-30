@@ -74,9 +74,9 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     return a.maxId > b.maxId ? -1 : 1;
                 })
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
-                t.set("board", "shared", {cardVersionRecordInfo}).then(function () {
-                    t.get("board", "shared", "cardVersionRecordInfo").then(res => console.log("4.5 set get: ", res))
-                })
+                // t.set("board", "shared", {cardVersionRecordInfo}).then(function () {
+                //     t.get("board", "shared", "cardVersionRecordInfo").then(res => console.log("4.5 set get: ", res))
+                // })
             }
         })
     })
@@ -255,7 +255,6 @@ window.clickChangedCardBtn = function clickChangedCardBtn() {
     let titleTd = null;
     let lastTimeTd = null;
     let versionRecordTd = null;
-    let cardsVersionRecordInfo = [];
 
     // const cardsVersionRecordInfo = t.arg('cardsVersionRecordInfo');
     // t.get("board", "shared", "cardsVersionRecordInfo").then(function (res) {
@@ -263,7 +262,7 @@ window.clickChangedCardBtn = function clickChangedCardBtn() {
     //     cardsVersionRecordInfo = res;
     //     console.log("cardsVersionRecordInfo in html in get: ", cardsVersionRecordInfo);
     // });
-    console.log("cardsVersionRecordInfo in method: ", cardsVersionRecordInfo);
+    console.log("cardsVersionRecordInfo in method: ", cardVersionRecordInfo);
 
     const table = document.getElementById('table');
     const fragment = document.createDocumentFragment();
@@ -277,7 +276,7 @@ window.clickChangedCardBtn = function clickChangedCardBtn() {
     fragment.appendChild(name);
     fragment.appendChild(headTr);
 
-    cardsVersionRecordInfo.forEach((card) => {
+    cardVersionRecordInfo.forEach((card) => {
         tr = document.createElement('tr');
         let labelSet = card.labels.filter(label => label.name !== '');
         console.log('card labels after filter: ', labelSet);

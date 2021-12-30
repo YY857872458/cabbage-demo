@@ -23,65 +23,6 @@
 <!--        </tr>-->
     </table>
 </div>
-<script>
-    function clickChangedCardBtn() {
-        const t = window.TrelloPowerUp.iframe();
-        let tr = null;
-        let labelTd = null;
-        let titleTd = null;
-        let lastTimeTd = null;
-        let versionRecordTd = null;
-        let cardsVersionRecordInfo = [];
-
-        // const cardsVersionRecordInfo = t.arg('cardsVersionRecordInfo');
-        t.get("board", "shared", "cardsVersionRecordInfo").then(function (res) {
-            console.log("res in html: ", res);
-            cardsVersionRecordInfo = res;
-            console.log("cardsVersionRecordInfo in html in get: ", cardsVersionRecordInfo);
-        });
-        console.log("cardsVersionRecordInfo in html out get: ", cardsVersionRecordInfo);
-
-        const table = document.getElementById('table');
-        const fragment = document.createDocumentFragment();
-
-        var name = document.createElement('caption').appendChild(document.createTextNode('Story List'));
-        var headTr = document.createElement('tr');
-        headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Label')));
-        headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Title')));
-        headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Last Time')));
-        headTr.appendChild(document.createElement('th').appendChild(document.createTextNode('Version Record')));
-        fragment.appendChild(name);
-        fragment.appendChild(headTr);
-
-        cardsVersionRecordInfo.forEach((card) => {
-            tr = document.createElement('tr');
-            let labelSet = card.labels.filter(label => label.name !== '');
-            console.log('card labels after filter: ', labelSet);
-            let labelNameSet = [];
-            labelSet.forEach(label => labelNameSet.push(label.name));
-            console.log('card labels after filter: ', labelNameSet);
-
-            labelTd = document.createElement('td');
-            labelTd.appendChild(document.createTextNode(labelNameSet));
-            tr.appendChild(labelTd);
-
-            titleTd = document.createElement('td');
-            titleTd.appendChild(document.createTextNode(card.name));
-            tr.appendChild(titleTd);
-
-            lastTimeTd = document.createElement('td');
-            lastTimeTd.appendChild(document.createTextNode(card.lastTime));
-            tr.appendChild(lastTimeTd);
-
-            versionRecordTd = document.createElement('td');
-            versionRecordTd.appendChild(document.createTextNode(card.versionList));
-            tr.appendChild(versionRecordTd);
-
-            fragment.appendChild(tr);
-        });
-        table.appendChild(fragment);
-    }
-</script>
 <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
 <script src="../js/requirementChangeAnalysis.js"></script>
 </body>
