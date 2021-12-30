@@ -51,6 +51,7 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
     });
 
 let cardVersionRecordInfo = [];
+let result = [];
 t.cards('id', 'name', 'labels').then(cardList => {
     console.log("0.cardlist: ", cardList);
     cardList.forEach(card => {
@@ -70,8 +71,9 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     }
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
-                cardVersionRecordInfo = arraySort(cardVersionRecordInfo, maxId);
+                result = arraySort(cardVersionRecordInfo, maxId);
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
+                console.log("4.5.result: ", result);
             }
         })
     })
@@ -79,7 +81,7 @@ t.cards('id', 'name', 'labels').then(cardList => {
 
 function arraySort(objArr, key) {
     let result = objArr.slice(0);
-    return result.sort((a, b) => a[key] - b[key]);
+    return result.sort((a, b) => b[key] - a[key]);
 }
 
 window.startAnalysis = function startAnalysis() {
@@ -239,6 +241,7 @@ window.calculateRequirementChangeCountAndCardCountAsSource = function calculateR
 }
 
 window.clickChangedCardBtn = function clickChangedCardBtn() {
+    console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
     console.log("5.cardVersionRecordInfo: ", cardVersionRecordInfo);
 
     return t.modal({
