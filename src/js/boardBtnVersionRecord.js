@@ -1,5 +1,6 @@
 import axios from "axios";
 const t = window.TrelloPowerUp.iframe();
+const Diff = require('diff');
 
 window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text,cardId) {
     axios.get(`http://localhost:8086/description/${cardId}`).then(list => {
@@ -19,8 +20,6 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text,cardId) {
 
         const diff = Diff.diffChars(oldData.descriptions, currentData.descriptions);
         let savedTime = currentData.createdTime;
-        console.log("currentData.createTime: -> ", savedTime);
-        console.log("typeof currentData.createTime: -> ", typeof savedTime);
 
         return t.modal({
             url: './versionComparisons.html',
