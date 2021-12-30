@@ -1,8 +1,9 @@
 import axios from "axios";
+
 const t = window.TrelloPowerUp.iframe();
 const Diff = require('diff');
 
-window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text,cardId) {
+window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
     axios.get(`http://localhost:8086/description/${cardId}`).then(list => {
         const versionNum = parseInt(text.substring(1));
         const lastVersionNum = versionNum - 1;
@@ -20,16 +21,23 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text,cardId) {
 
         const diff = Diff.diffChars(oldData.descriptions, currentData.descriptions);
         let savedTime = currentData.createdTime;
-
-        return t.modal({
-            url: './versionComparisons.html',
-            args: {
-                text: diff,
-                savedTime: savedTime
-            },
-            height: 500,
-            fullscreen: false,
-            title: 'Description Comparison'
+        t.set('board', 'shared', {diff}).then(function () {
+            t.get('board', 'shared', 'diff').then(res => console.log('set diff: -> ', res))
         })
+        t.set('board', 'shared', {savedTime}).then(function () {
+            t.get('board', 'shared', 'savedTime').then(res => console.log('set savedTime: -> ', savedTime))
+        })
+
+        window.open('./boardComparison.html')
+        // return t.modal({
+        //     url: './versionComparisons.html',
+        //     args: {
+        //         text: diff,
+        //         savedTime: savedTime
+        //     },
+        //     height: 500,
+        //     fullscreen: false,
+        //     title: 'Description Comparison'
+        // })
     });
 }

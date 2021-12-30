@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles/desc-diff.css">
+</head>
+<script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
+<body>
+<div id="desc" class="desc">
+    <pre id="display" class="content"></pre>
+    <div id="date" class="date"></div>
+</div>
+<script>
+    let color = '';
+    const t = window.TrelloPowerUp.iframe();
+    let diff = [];
+    let savedTime = '';
+    t.get('board', 'shared', 'diff').then(function (res) {
+        console.log("222 diff res in html:", res)
+        diff = res;
+        console.log("222 diff in html:", diff)
+    })
+    t.get('board', 'shared', 'savedTime').then(function (res) {
+        console.log("222 savedTime res in html:",res)
+        savedTime = res;
+        console.log("222 savedTime in html: ",savedTime)
+    })
+    let span = null;
+
+    if (diff === '' || diff === undefined || diff === null) {
+        document.getElementById("display").innerHTML = "描述未更改！";
+    }
+
+    const display = document.getElementById('display');
+    const fragment = document.createDocumentFragment();
+    diff.forEach((part) => {
+        if (part.added) {
+            color = 'green';
+            span = document.createElement('ins');
+        } else if (part.removed) {
+            color = 'red';
+            span = document.createElement('del');
+        } else {
+            color = '#172b4d'
+            span = document.createElement('span');
+        }
+        span.style.color = color;
+        span.appendChild(document
+            .createTextNode(part.value));
+        fragment.appendChild(span);
+    });
+    display.appendChild(fragment);
+
+    document.getElementById('date').innerHTML = `最后更改时间：${time}`;
+</script>
+</body>
+</html>
