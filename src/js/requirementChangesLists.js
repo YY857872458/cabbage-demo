@@ -37,7 +37,7 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
             },
             callback: function () {
                 return t.modal({
-                    url:'requirementChangesLists.html',
+                    url:'newPage.html',
                 })
             },
             height: 500,
