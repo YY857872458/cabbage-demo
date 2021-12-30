@@ -93,7 +93,7 @@ function onVersionBtnCLick(text) {
     });
 }
 
-function onVersionBoardBtnCLick(text,cardId) {
+window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text,cardId) {
     axios.get(`http://localhost:8086/description/${cardId}`).then(list => {
         const versionNum = parseInt(text.substring(1));
         const lastVersionNum = versionNum - 1;
