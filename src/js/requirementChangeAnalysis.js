@@ -238,17 +238,18 @@ window.calculateRequirementChangeCountAndCardCountAsSource = function calculateR
     return data;
 }
 
-// window.clickChangedCardBtn = function clickChangedCardBtn() {
-//     return t.modal({
-//         url: './boardBtnVersionRecord.html',
-//         args: {
-//             cardsVersionRecordInfo: cardVersionRecordInfo,
-//         },
-//         height: 500,
-//         fullscreen: false,
-//         title: 'Description Comparison'
-//     })
-// }
+window.tryLink = function tryLink() {
+    return t.modal({
+        url: './boardBtnVersionRecord.html',
+        args: {
+            cardsVersionRecordInfo: cardVersionRecordInfo,
+        },
+        height: 500,
+        fullscreen: false,
+        title: 'Description Comparison'
+    })
+}
+
 window.clickChangedCardBtn = function clickChangedCardBtn() {
     let tr = null;
     let labelTd = null;
