@@ -44,13 +44,14 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
         //     fullscreen: false,
         //     title: 'Description Comparison'
         // })
-        return t.popup({
-            title: 'Description Comparison',
-            url: './boardComparison.html',
-            args: {
-                text: diff,
-                savedTime: savedTime
-            }
-        })
+        window.open("newPage.html","","width=200,height=200");
+        // return t.popup({
+        //     title: 'Description Comparison',
+        //     url: './boardComparison.html',
+        //     args: {
+        //         text: diff,
+        //         savedTime: savedTime
+        //     }
+        // })
     });
 }
