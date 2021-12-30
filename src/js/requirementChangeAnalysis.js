@@ -51,7 +51,6 @@ t.cards('id', 'labels', 'name', 'dateLastActivity')
     });
 
 let cardVersionRecordInfo = [];
-let result = [];
 t.cards('id', 'name', 'labels').then(cardList => {
     console.log("0.cardlist: ", cardList);
     cardList.forEach(card => {
@@ -71,18 +70,14 @@ t.cards('id', 'name', 'labels').then(cardList => {
                     }
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
-                result = arraySort(cardVersionRecordInfo, maxId);
+                cardVersionRecordInfo = cardVersionRecordInfo.sort(function (a, b) {
+                    return a.maxId > b.maxId ? 1 : -1;
+                })
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
-                console.log("4.5.result: ", result);
             }
         })
     })
 })
-
-function arraySort(objArr, key) {
-    let result = objArr.slice(0);
-    return result.sort((a, b) => b[key] - a[key]);
-}
 
 window.startAnalysis = function startAnalysis() {
     drawPieChart();
