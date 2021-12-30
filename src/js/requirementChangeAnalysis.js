@@ -71,7 +71,7 @@ t.cards('id', 'name', 'labels').then(cardList => {
                 })
                 cardVersionRecordInfo = [...cardVersionRecordInfo, {...card, maxId, lastTime, versionList}];
                 cardVersionRecordInfo = cardVersionRecordInfo.sort(function (a, b) {
-                    return a.maxId > b.maxId ? 1 : -1;
+                    return a.maxId > b.maxId ? -1 : 1;
                 })
                 console.log("4.cardVersionRecordInfo: ", cardVersionRecordInfo);
             }
