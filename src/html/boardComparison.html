@@ -13,19 +13,22 @@
 <script>
     let color = '';
     const t = window.TrelloPowerUp.iframe();
-    let diff = [];
-    let savedTime = '';
-    t.get('board', 'shared', 'diff').then(function (res) {
-        console.log("222 diff res in html:", res)
-        diff = res;
-        console.log("222 diff in html:", diff)
-    })
-    t.get('board', 'shared', 'savedTime').then(function (res) {
-        console.log("222 savedTime res in html:",res)
-        savedTime = res;
-        console.log("222 savedTime in html: ",savedTime)
-    })
+    // let diff = [];
+    // let savedTime = '';
+    // t.get('board', 'shared', 'diff').then(function (res) {
+    //     console.log("222 diff res in html:", res)
+    //     diff = res;
+    //     console.log("222 diff in html:", diff)
+    // })
+    // t.get('board', 'shared', 'savedTime').then(function (res) {
+    //     console.log("222 savedTime res in html:",res)
+    //     savedTime = res;
+    //     console.log("222 savedTime in html: ",savedTime)
+    // })
     let span = null;
+
+    const diff = t.arg('text');
+    const time = t.arg('savedTime');
 
     if (diff === '' || diff === undefined || diff === null) {
         document.getElementById("display").innerHTML = "描述未更改！";

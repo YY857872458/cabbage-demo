@@ -28,16 +28,21 @@ window.onVersionBoardBtnCLick = function onVersionBoardBtnCLick(text, cardId) {
             t.get('board', 'shared', 'savedTime').then(res => console.log('set savedTime: -> ', savedTime))
         })
 
-        window.open('./boardComparison.html')
-        // return t.modal({
-        //     url: './versionComparisons.html',
-        //     args: {
-        //         text: diff,
-        //         savedTime: savedTime
-        //     },
-        //     height: 500,
-        //     fullscreen: false,
-        //     title: 'Description Comparison'
-        // })
+        // window.open('./boardComparison.html')
+        return t.modal({
+            url: './boardComparison.html',
+            args: {
+                text: diff,
+                savedTime: savedTime
+            },
+            callback: function () {
+                return t.modal({
+                    url:'requirementChangesLists.html',
+                })
+            },
+            height: 500,
+            fullscreen: false,
+            title: 'Description Comparison'
+        })
     });
 }
